@@ -1,0 +1,19 @@
+<p class='planttitle' ng-show='marker.isMatched()'>
+	<i class='fa fa-check-circle-o plantConfirmationIcon'
+		ng-class="{'icon_confirmed':marker.isMatched()}"></i>
+
+		<strong
+		ng-show='marker.getSpeciesName()!=null'>{{marker.getSpeciesName()}}</strong>
+</p>
+
+<p class='planttitle' ng-show='!marker.isMatched()'>
+	<i class='fa fa-check-circle-o plantConfirmationIcon'
+		ng-class="{'icon_confirmed':marker.isMatched()}"></i>
+
+		<span ng-show="!marker.plant_by_user">Unmatched</span>
+		<span ng-show="marker.plant_by_user">{{marker.plant_by_user}}</span>
+</p>
+
+<p class='subtitle' ng-show='marker.isMatched()'>
+	({{marker.plant.scientificName}})</p>
+

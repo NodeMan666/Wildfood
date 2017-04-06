@@ -1,0 +1,23 @@
+<div class="col-md-1 mymarkerStubItem"
+     ng-click="showSingleTargetMarker(marker)" class="closeMarker">
+
+    <span marker-source-icon="marker"/>
+
+    <span marker-thumb="marker" />
+
+    <span marker-plant-title-short="marker"/>
+
+    <span marker-short-title="marker"/>
+
+    <span marker-short-location="marker"/>
+
+
+
+		<span ng-class="{'favorited': marker.isFavorite()}">
+      <i class="fa fa-heart fa-lg"></i> <span class="text"
+                                             ng-click="onFavoriteClick(marker)"
+                                             ng-show='!marker.isFavorite()'>Like</span>
+				<span class="text" ng-click="onFavoriteClick(marker)"
+                      ng-show='marker.isFavorite()'>Liked</span>
+			</span>
+</div>

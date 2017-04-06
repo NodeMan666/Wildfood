@@ -1,0 +1,15 @@
+
+<p class="markersquaretext_planttitle" ng-show="marker.isMatched()">
+	<i class="fa fa-check-circle-o fa-lg plantConfirmationIcon"
+		ng-class="{'icon_confirmed': marker.isMatched()}"></i> <span
+		ng-show="marker.isMatched()" tooltip-placement="right"
+		tooltip="{{marker.getSpeciesFullName()}}">{{marker.getSpeciesName()|ellipsis:18}}</span>
+</p>
+
+<p class="markersquaretext_planttitle" ng-show="!marker.isMatched()">
+	<i class="fa fa-check-circle-o fa-lg plantConfirmationIcon"
+		ng-class="{'icon_confirmed': marker.isMatched()}" style=""></i>
+
+		<span ng-show="!marker.plant_by_user">Unmatched</span>
+		<span ng-show="marker.plant_by_user"  tooltip-placement="right" tooltip="{{marker.getSpeciesFullName()}}">{{marker.plant_by_user|ellipsis:12}}</span>
+</p>

@@ -1,0 +1,29 @@
+{
+  "_id": "54a7f0a1afcf3eb0294e68ea",
+  "provider": "local",
+  "name": "Test User",
+  "email": "test@test.com",
+  "__v": 0,
+  "github": {"updated": "2015-01-03T13:37:37.565Z"},
+  "google": {"updated": "2015-01-03T13:37:37.565Z"},
+  "instagram": {"updated": "2015-01-03T13:37:37.565Z"},
+  "twitter": {"updated": "2015-01-03T13:37:37.565Z"},
+  "facebook": {
+    "profile_picture": "test",
+    "updated": "2015-01-03T13:37:37.565Z"
+  },
+  "role": "user"
+}
+
+
+"from": {
+"id": "262243677",
+"source": "instagram",
+"wf_user_id": "3881",
+"username": "featherandfable",
+"full_name": "Maryam Hussain",
+"profile_picture": "http://photos-h.ak.instagram.com/hphotos-ak-xfa1/10369288_657187880995967_590150935_a.jpg",
+"profile_link": "http://instagram.com/featherandfable",
+"active_user": "0"
+},
+

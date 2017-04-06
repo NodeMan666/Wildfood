@@ -1,0 +1,22 @@
+
+
+<!--<div class="row form-group has-feedback">-->
+  <!--<label>Description</label> <textarea class="form-control" ng-model="profile.description" rows="3"/>-->
+<!--</div>-->
+
+<div class="row form-group has-feedback">
+  <label>Rating</label> <input ng-model="profile.rating" maxlength="5"/>
+</div>
+
+<tabset>
+  <tab  ng-repeat="tab in profile.parts">
+    <tab-heading>
+      <i class="fa fa-check-circle-o" ng-show="tab.edible" style="color: green"/>
+      <i class="fa fa-check-circle-o" ng-show="tab.notedible" style="color: red"/>
+      {{tab.part}}
+    </tab-heading>
+
+    <span edibility-profile-item="tab"/>
+  </tab>
+
+</tabset>

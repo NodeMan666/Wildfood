@@ -1,0 +1,72 @@
+<div marker-group="markergroups['plantmarkers']"
+     template="'app/map/template_markerSquare.html'"
+     show-method="showSingleTargetMarker($item)"
+     add-method="addTargetMarkerAndSelect($item)">
+
+    <h3 ng-show=" extraInfoTitle!=null && extraInfoTitle!=''" class="showExtraInfoTitle leftItem">
+        {{extraInfoTitle}} <span ng-show="extraInfoSubTitle!=null && extraInfoSubTitle!=''"
+                                 style="font-style: italic;"> ({{extraInfoSubTitle}})</span>
+
+     <span ng-show="markergroups['plantmarkers'].markers.length>1" class="marker_sort_div">(Sort by
+                    <span sort-group="markergroups['plantmarkers'].sortpredicate"
+                          sort-group-direction="markergroups['plantmarkers'].sortdirection">
+                        <span sort-item="Date" sort-property="created"/> |
+                        <span sort-item="Location" sort-property="closenessToCenter"/> |
+                        <span sort-item="User" sort-property="user.formatted_name"/>
+                    </span>)</span>
+
+    </h3>
+
+
+</div>
+
+
+<div marker-group="markergroups['mymarkers']" template="'app/map/template_myMarkerSquare.html'"
+     add-method="addTargetMarkerAndSelect($item)"
+     show-method="showSingleTargetMarker($item)"
+     edit-method="editMarker($item)"
+     delete-method="deleteMarker($item)"
+  >
+    <h3 class="leftItem showExtraInfoTitle">
+        My tags <span ng-show="markergroups['mymarkers'].markers.length>1" class="marker_sort_div">(Sort by
+                    <span sort-group="markergroups['mymarkers'].sortpredicate"
+                          sort-group-direction="markergroups['mymarkers'].sortdirection">
+                        <span sort-item="Date" sort-property="created"/> |
+                        <span sort-item="Alphabetic" sort-property="generaltitle" sort-default-direction="false"/>
+                    </span>)</span>
+    </h3>
+</div>
+
+
+<div marker-group="markergroups['favorites']" template="'app/map/template_myFavoriteSquare.html'"
+     on-favorite-method="onFavoriteClick($item)"
+     show-method="showSingleTargetMarker($item)"
+
+     add-method="addTargetMarkerAndSelect($item)">
+
+    <h3 class="leftItem showExtraInfoTitle">
+        My Favorites  <span ng-show="markergroups['favorites'].markers.length>1" class="marker_sort_div">(Sort by
+                    <span sort-group="markergroups['favorites'].sortpredicate"
+                          sort-group-direction="markergroups['favorites'].sortdirection">
+                        <span sort-item="Date" sort-property="created"/> |
+                        <span sort-item="Alphabetic" sort-property="generaltitle" sort-default-direction="false"/>
+                    </span>)</span></h3>
+</div>
+
+
+<div marker-group="markergroups['user']" template="'app/map/template_markerSquare.html'"
+     add-method="addTargetMarkerAndSelect($item)"
+     show-method="showSingleTargetMarker($item)"
+  >
+    <h3 class="leftItem showExtraInfoTitle">
+        Tags by  <span ng-show="markergroups['user'].markers.length>1" class="marker_sort_div">(Sort by
+                    <span sort-group="markergroups['user'].sortpredicate"
+                          sort-group-direction="markergroups['user'].sortdirection">
+                        <span sort-item="Date" sort-property="created"/> |
+                        <span sort-item="Alphabetic" sort-property="generaltitle" sort-default-direction="false"/>
+                    </span>)</span>
+        <span twitter-entry-user-only="selectedUser"/></h3> {{selectedUser._id}}
+</div>
+
+
+

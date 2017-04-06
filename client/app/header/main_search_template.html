@@ -1,0 +1,15 @@
+<div class="typeAheadEntry" ng-mouseover="match.model.showMore=true" ng-mouseleave="match.model.showMore=false">
+    <i class="fa {{match.model.icon}} fa-lg typeahedicon {{match.model.style}}"></i>
+      <span ng-show="!match.model.showMore">{{match.model.name}}  <img
+              ng-src="{{match.model.image}}" class="avatar_small" alt=""
+              style="width:20px;height: 20px" ng-show="match.model.image!=null"/></span>
+
+		<span ng-show="match.model.showMore">
+			{{match.model.extra}} <img
+                ng-src="{{match.model.image}}" class="avatar_small" alt=""
+                style="width:60px;height: 60px" ng-show="match.model.image!=null"/>
+		</span>
+
+
+</div>
+

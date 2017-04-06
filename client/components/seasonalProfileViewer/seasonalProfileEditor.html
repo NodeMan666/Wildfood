@@ -1,0 +1,31 @@
+<br/>
+<div class="seasonalAdmin">
+  Select the zones where this plant grows:<br/>
+<span ng-repeat="(category, value)  in allzones | groupBy: 'climate.category'">
+    <b>{{category}} : </b>
+     <span ng-repeat="zone in value">
+           <button type="button" class="btn btn-primary" ng-model="zone.selected" btn-checkbox style="background-image: linear-gradient({{zone.climate.color}}, {{zone.climate.color}})">
+               <span climate-zone-title-short="zone"/>
+           </button>
+     </span>
+
+    <!--<br/>-->
+</span>
+  <br/>
+  Select the plant parts that you want to work with:<br/>
+<span ng-repeat="part in allparts">
+    <button type="button" class="btn btn-primary" ng-model="part.selected" btn-checkbox>
+      {{part.part.name}}
+    </button>
+</span>
+
+  <br/>
+  <br/>
+  <span seasonal-profile ="profile"  ></span>
+  <br/>
+  <br/>
+  <!--{{selectedZones}}-->
+  <!--{{selectedParts}}-->
+
+  <span seasonal-profile-item ="profile"  ></span>
+</div>

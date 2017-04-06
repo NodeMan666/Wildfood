@@ -1,0 +1,15 @@
+<p>{{localised.description}}</p>
+
+<span  ng-repeat="tab in profile.parts">
+  <span ng-show="tab.edible || tab.notedible">
+
+  <i class="fa fa-check-circle-o" ng-show="tab.edible" style="color: greenyellow"/>
+  <i class="fa fa-check-circle-o" ng-show="tab.notedible" style="color: red"/> {{tab.part}}
+  <span>{{tab.description}}</span>
+
+   <!--conditionsOfUse: String,-->
+  <!--preparation: String,-->
+  <!--dosage: String,-->
+  <!--chineseMedicineDetail: String-->
+</span>
+</span>

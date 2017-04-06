@@ -1,0 +1,25 @@
+
+
+<span ng-show="(item.species.local_tags > 0)" class="itemCountBanner"><i
+	class="fa fa-map-marker fa-lg" tooltip-placement="right"
+  tooltip="{{item.species.local_tags}} local tags"></i>
+</span>
+
+<span ng-show="item.species.marker_count > 0 && (item.species.marker_count > item.species.local_tags)" class="itemAllCountBanner"><i
+  class="fa fa-globe fa-lg" tooltip-placement="right"
+  tooltip="{{item.species.marker_count - item.species.local_tags}} tags"></i>
+</span>
+
+<span class='isFavoriteIcon favorited squarefavorite'><i
+  class='fa fa-heart fa-lg fa-lg' ng-show='item.species.isFavorite()' tooltip="This plant has been liked"></i></span>
+<div class="plantDbItemInner">
+	<div class="plantTitle">
+		<strong>{{item.species.name }} </strong>
+		<div class="latin">({{item.species.scientificName}})</div>
+	</div>
+	<div class="plantImage">
+
+		<img ng-src="{{item.species.images[0].versions.thumb.url}}"
+			class="roundedImage">
+	</div>
+</div>

@@ -1,0 +1,217 @@
+<div ng-show="!isAdmin()" class="noforest">
+  You have to log in as admin to view this page <a class="btn" ng-click="login()">
+  Login </a>
+</div>
+
+<div ng-show="isAdmin()" class="noforest">
+  <div class="infopanel">
+    <div ng-include src="'components/user/template_userProfile.html'"></div>
+  </div>
+  <div id="markerAdmin" class="col-sm-12 noforest" ng-show="isAdmin()">
+
+
+
+    <script type="text/ng-template" id="userTypeAheadTemplate.html">
+
+      <div class="typeAheadEntry">
+        <!--<span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>-->
+
+        <p class="latin">
+          <span bind-html-unsafe="match.model.name"></span>: <span bind-html-unsafe="match.model._id"></span>:
+          <!--(<span bind-html-unsafe="match.model.source"></span>)-->
+        </p>
+
+
+      </div>
+    </script>
+
+    <table>
+
+
+      <tr>
+        <td>
+          <div class="infopanel" style="margin-left: 0px">
+            <a class="btn" data-ng-class="{'selected_button': mode=='ALL'}"
+               ng-click="showAll()"> show all markers </a> <a class="btn"
+                                                              data-ng-class="{'selected_button': mode=='UNPROCESSED'}"
+                                                              ng-click="showUnprocessed()"> Show
+            unprocessed markers </a>
+
+            <div>
+              Include inactive markers <input type="checkbox"
+                                              data-ng-model="hidden">
+            </div>
+            <div>
+            Show markers with unmatched species only <input type="checkbox"
+                                                            data-ng-model="unmatched">
+            </div>
+            <div>
+              Show unknown markers only <input type="checkbox"
+                                                              data-ng-model="unknownmarkersonly">
+            </div>
+            <div>
+              Filter: <input ng-model="markerFilter"
+                             placeholder="type in a search text..."><a
+              ng-click="clearMarkerFilter()"><i class="fa fa-times  fa-lg"
+                                                style="color: #99CC99"></i></a>
+
+            </div>
+
+            <!--<div>-->
+              <!--How many:-->
+
+              <!--50<input type="radio"-->
+                       <!--ng-model="howmany"-->
+                       <!--value="50"-->
+                       <!--ng-value="50">-->
+              <!--100<input type="radio"-->
+                        <!--ng-model="howmany"-->
+                        <!--value="100"-->
+                        <!--ng-value="100">-->
+
+              <!--All<input type="radio"-->
+                        <!--ng-model="howmany"-->
+                        <!--value="all"-->
+                        <!--ng-value="all">-->
+
+            <!--</div>-->
+
+            <div>
+              Location based filter (will only include markers within 100km from here):
+
+              <input ng-disabled="loading"
+                     type="text" ng-model="location.formatted_address"
+                     placeholder="type in an address"
+                     typeahead="address as address.formatted_address for address in getLocation($viewValue) | filter:{formatted_address:$viewValue}"
+                     typeahead-loading="loadingLocations" class="form-control"
+                     name="address" id="content_adminmarker_address"> <i ng-show="loadingLocations"
+                                                                         class="searchloading fa fa-cog fa-spin"></i><a
+              ng-click="clearLocationFilter()"><i class="fa fa-times  fa-lg"
+                                                  style="color: #99CC99"></i></a>
+              <button ng-click="makeCurrentLocationDefault();">Make this location my default</button>
+
+
+            </div>
+
+
+            <div>
+
+              <a class="btn"
+
+                 ng-click="filter()"> Refresh</a>
+            </div>
+          </div>
+
+        </td>
+        <td>
+          <div class="infopanel">
+            <div ng-show="markerIdFilter==null || markerIdFilter==''">
+              <div>SHOWING: {{mode}}</div>
+
+              <div>
+                HIDDEN: <span ng-show="!hidden">INACTIVE MARKERS</span><span ng-show="unknownmarkersonly">, KNOWN MARKERS</span>
+                <span ng-show="unmatched">, ALL MARKERS WITH MATCHED SPECIES</span>
+                <span ng-show="mode=='UNPROCESSED'">, ALREADY PROCESSED MARKERS</span>
+              </div>
+
+
+              <div>Filter: {{markerFilter}}</div>
+
+              <div>User filter: {{userMarkerFilter}}</div>
+
+              <div>Plant filter: {{plantMarkerFilter}}</div>
+
+              <!--<div>How many: {{howmany}}</div>-->
+
+              <div>Location:
+                <span ng-show="location.formatted_address.formatted_address==null">{{location.formatted_address}}</span>
+                <span ng-show="location.formatted_address.formatted_address!=null">{{location.formatted_address.formatted_address}}</span>
+              </div>
+            </div>
+            <div ng-show="markerIdFilter!=null && markerIdFilter!=''">
+              Marker: {{markerIdFilter}}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="infopanel">
+
+
+            <div>
+              Show marker by id: <input ng-model="markerIdFilter"
+                                        placeholder="type in marker id..." class="form-control"
+                                        type="text" style="display: inline; width: 200px;"/> <a
+              ng-click="clearMarkerIdFilter()"><i
+              class="fa fa-times  fa-lg" style="color: #99CC99"></i></a>
+
+            </div>
+            <div>
+              Show markers by user: <input ng-model="userMarkerFilter"
+                                           placeholder="type in user name or id" class="form-control"
+                                           type="text"
+                                           typeahead="state for state in searchUsers($viewValue)| limitTo:8"
+                                           typeahead-template-url="userTypeAheadTemplate.html"
+                                           style="display: inline; width: 200px;"/> <a
+              ng-click="clearMarkersByUserFilter()"><i
+              class="fa fa-times  fa-lg" style="color: #99CC99"></i></a>
+            </div>
+            <div>
+              Show markers by plant: <input ng-model="plantMarkerFilter"
+                                            placeholder="type in plant" class="form-control" type="text"
+                                            typeahead="plant  as plant.species.name for plant  in getSpecies($viewValue)"
+                                            typeahead-template-url="components/plants/plant_typeahead_template.html"
+                                            style="display: inline; width: 200px;"/>
+
+              <i ng-show="loadingSpecies" class="searchloading fa fa-cog fa-spin"></i>
+
+
+              <a
+                ng-click="clearMarkersByPlantFilter()"><i
+                class="fa fa-times  fa-lg" style="color: #99CC99"></i></a>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+
+    </table>
+
+
+
+
+    <a class="btn" ng-click="markAllAsInactive()"> Mark all showing as
+      inactive </a> <a class="btn" ng-click="markAllAsactive()"> Mark all
+    showing as active </a> <a class="btn" ng-click="markAllAsProcessed()">
+    Mark all showing as processed</a> <a class="btn"
+                                         ng-click="markAllAsNotProcessed()"> Mark all showing as not
+    processed </a>
+
+    <div class="loading" ng-show="loading">
+      <i class="fa fa-cog fa-spin"></i> <span class="loadingtext">Loading
+			</span>
+
+    </div>
+
+    <br/>
+
+    <pagination ng-model="currentPage" total-items="itemCount"
+                items-per-page="resultsPerPage" max-size="5"></pagination>
+
+    <div ng-show="markers.length==0 && !loading">No markers with this search
+      criteria. Change your search criteria to see some
+    </div>
+
+    <div ng-show="markers.length>0 && !loading && next_page == -1">
+      <br/> {{markers.length}} markers on this page, No more markers after this page
+    </div>
+
+    <div ng-show="markers.length>0 && !loading && next_page>0">
+      <br/> {{markers.length}} markers on this page
+    </div>
+
+    <div ng-repeat="item in markers"
+         ng-controller="markerAdminItemController" ng-show="!loading">
+      <div ng-include src="'app/admin/marker/admin_marker_item.html'"></div>
+      </div>
+  </div>
+</div>

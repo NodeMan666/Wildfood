@@ -1,0 +1,198 @@
+
+.actionBar {
+  margin-top: 25px;
+  clear: left;
+  color: $actionbar_color;
+}
+
+.actionItem {
+  display: inline;
+
+  .text {
+    margin-left: 2px;
+    margin-right: 12px;
+  }
+
+  .Icon {
+    margin-top: -5px;
+  }
+
+  .text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.favorited {
+  color: $favorited_color;
+}
+
+.accordion-toggle {
+  cursor: pointer;
+}
+
+.more_info_header.panel-heading {
+  background-color: $accordion_header_color2;
+}
+
+.planttitle {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.entryText {
+  clear: left;
+  margin-top: 15px;
+  padding-top: 10px;
+}
+
+.location {
+  color: $actionbar_location_color;
+  cursor: pointer;
+}
+
+.plantConfirmationIcon {
+}
+
+.favStar {
+  width: 15px;
+  height: 15px;
+  margin-top: -4px;
+}
+
+.itemDescription {
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.detailContent {
+  .thumbnail {
+    cursor: pointer;
+  }
+}
+
+
+
+.plantsidebar_intro {
+  margin-top: 10px;
+  float: left;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 7px;
+  background-color: rgba(3, 102, 0, 0.6);
+}
+
+.plantsidebar_intro h2 {
+  font-size: 24px;
+  color: #fff;
+  float: left;
+}
+
+.plantsidebar_intro .subpoints{
+  float: left;
+  font-size: 20px;
+}
+
+.plantsidebar_intro i {
+  vertical-align: -20%;
+  padding-right: 20px;
+  float: left;
+}
+
+.plantsidebar_intro .title {
+  display: inline;
+}
+
+
+.myapp {
+//  background-image: url("../assets/images/forest.jpg");
+//  background-repeat: repeat;
+}
+
+.forest{
+ // background-image: url("../assets/images/photos/forage.jpg");
+  background-repeat: repeat;
+}
+.noforest{
+  background: white;
+  background-image:none;
+}
+
+//.maincontainer {
+//  background-image: url("../assets/images/forest.jpg");
+//  background-repeat: repeat;
+//}
+//#plantsContent{
+//  background-image: url("../assets/images/forest.jpg");
+//  background-repeat: repeat;
+//
+//}
+.toptop{
+  height: 8px;
+  //background-image: url("../assets/images/forest.jpg");
+//  background-repeat: repeat;
+  border-bottom: 1px #ddd solid;
+}
+
+.container-fluid {
+  padding-left: 0px;
+   padding-right: 0px;
+}
+
+.sidebar-offcanvas{
+  padding-right: 0px;
+  padding-left: 0px;
+
+}
+
+.mapContainer{
+  padding-right: 0px;
+  padding-left: 0px;
+
+}
+#plantsContent{
+padding-left: 20px;
+}
+
+.mainmarkerimage{
+  width: 200px;
+  height: 200px;
+  border-radius: 7px;
+}
+.imagepanel{
+  float:left;
+}
+
+.nexttoimagepanel{
+  float: left;
+  display: inline;
+  margin-left: 20px;
+}
+
+.plantspanel{
+  background-color: #fff;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 7px;
+}
+
+
+.plantsidebar{
+  background-color: #fff;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 7px;
+}
+
+.plantsidebar h2{
+margin-top: 0px;
+}
+
+.plantsidebar h2 .latin{
+ font-size: 20px;
+}
+
+#addMarkerContent{
+
+}

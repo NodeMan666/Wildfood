@@ -1,0 +1,213 @@
+<script type="text/ng-template" id="dangerPopup.html">
+
+  <div class="triangle"></div>
+
+  <div class="ns-popover-tooltip">
+
+    <ul>
+      <li ng-repeat="d in item.species.danger">{{d.text}}</li>
+    </ul>
+
+  </div>
+</script>
+<script type="text/ng-template" id="warningPopup.html">
+
+  <div class="triangle"></div>
+
+  <div class="ns-popover-tooltip">
+
+    <ul>
+      <li ng-repeat="d in item.species.warnings">{{d.text}}</li>
+    </ul>
+
+  </div>
+</script>
+
+
+<accordion-group is-open="item.species.descriptionTab.open|| false">
+  <accordion-heading>
+    <strong
+      ng-class="{'disabledHeading': !item.species.descriptionTab.show}">{{item.species.name
+      }} (<span class="latin">{{item.species.scientificName}}</span>)
+    </strong>
+    {{item.species._id}}
+    <span ng-show="item.species.hasDanger()">
+<i
+  ns-popover
+
+  ns-popover-template="dangerPopup.html"
+
+  ns-popover-trigger="mouseenter"
+
+  ns-popover-theme="ns-popover-tooltip-theme"
+
+
+  ns-popover-timeout="1" class="fa fa-warning" style="color: red"
+  ></i>
+
+    </span>
+
+       <span ng-show="item.species.hasWarning()">
+<i
+  ns-popover
+
+  ns-popover-template="warningPopup.html"
+
+  ns-popover-trigger="mouseenter"
+
+  ns-popover-theme="ns-popover-tooltip-theme"
+
+
+  ns-popover-timeout="1" class="fa fa-warning" style="color: orange"
+  ></i>
+
+    </span>
+
+  </accordion-heading>
+  <p><strong>Common names:</strong>
+    {{ item.species.commonNames | joinBy:',' }}
+  </p>
+
+  <p><strong>Scientific Name: </strong>{{item.species.scientificName }}</p>
+
+  <p ng-show="item.species.family"><strong>Family: </strong>{{item.species.family }}</p>
+
+  <p>{{item.species.description }}</p>
+
+  <p ng-show="!item.species.descriptionTab.show">No data available</p>
+
+</accordion-group>
+
+<accordion-group is-open="item.species.plant_profileTab.open|| false">
+  <accordion-heading>
+<span ng-class="{'disabledHeading': !item.species.plant_profileTab.show}">
+	Plant profile</span></accordion-heading>
+
+  <p ng-show="item.species.origin"><strong>Origin: </strong>{{item.species.origin }}</p>
+
+  <p ng-show="item.species.habitat"><strong>Habitat: </strong>{{item.species.habitat }}</p>
+
+  <p ng-show="item.species.characteristics"><strong>Characteristics: </strong>{{item.species.characteristics }}</p>
+
+  <p ng-show="item.species.distinguishing_features"><strong>Distinguishing Features: </strong>{{item.species.distinguishing_features
+    }}</p>
+
+  <p ng-show="item.species.notes && item.species.notes.length>0"><strong>Notes: </strong>
+
+    <span ng-repeat="note in item.species.notes">
+    {{note.text }} <br/>
+  </span>
+  </p>
+
+  <p ng-show="!item.species.plant_profileTab.show">No data available</p>
+
+</accordion-group>
+
+<accordion-group>
+  <accordion-heading>
+    Seasonal information
+  </accordion-heading>
+
+    <span ng-show="item && item.species">
+     <!--//<span seasonal-profile="getCurrentSeasonalProfile(item.species)"/>-->
+      <span seasonal-profile="currentSeasonalProfile"/>
+      <!--<span seasonal-profile="item.species.seasonalProfile"/>-->
+    </span>
+</accordion-group>
+
+
+<accordion-group is-open="item.species.edible_partsTab.open|| false">
+  <accordion-heading>
+<span ng-class="{'disabledHeading': !item.species.edible_partsTab.show}">
+	Edibility
+
+ <span ng-show="item.species.edibility.edible"> ( <i class="fa fa-check-circle-o"
+                                                     style="color: greenyellow"></i> edible )</span>
+  <span ng-show="item.species.edibility.notedible"> ( <i class="fa fa-check-circle-o" style="color: red"></i> not
+    edible )</span>
+
+
+
+</span></accordion-heading>
+
+
+  <span ng-show="item.species.edible_partsTab.show" edibility-profile-viewer="item.species.edibility"/>
+
+  <p ng-show="!item.species.edible_partsTab.show">No data available</p>
+
+</accordion-group>
+
+
+<accordion-group is-open="item.species.medicinalTab.open|| false">
+  <accordion-heading>
+<span ng-class="{'disabledHeading': !item.species.medicinalTab.show}">
+	Medicinal info / Other uses</span></accordion-heading>
+  <div ng-show="item.species.medicinalTab.show">
+    <strong> Medicinal info:</strong>
+    <span edibility-profile-viewer="item.species.medicinalProfile"/>
+  </div>
+  <div ng-show="item.species.medicinalTab.show">
+    <strong>Other Users:</strong>
+    <span ng-show="item.species.medicinalTab.show" edibility-profile-viewer="item.species.otherUses"/>
+  </div>
+
+  <p ng-show="!item.species.medicinalTab.show">No data available</p>
+
+</accordion-group>
+
+<!--<accordion-group is-open=" item.species.knownHazardsTab.open">-->
+<!--<accordion-heading>-->
+<!--<span ng-class="{'disabledHeading': !item.species.knownHazardsTab.show}">-->
+<!--Known Hazards </span></accordion-heading>-->
+
+<!--<p>{{item.species.known_hazards}}</p>-->
+
+<!--<p ng-show="!item.species.knownHazardsTab.show">No data available</p>-->
+
+<!--</accordion-group>-->
+
+<accordion-group
+  is-open="item.species.picturesTab.open|| false">
+  <accordion-heading>
+<span ng-class="{'disabledHeading': !item.species.picturesTab.show}">
+	Pictures</span></accordion-heading>
+
+
+  <p class="thumbnail" ng-show="item.species.images!=null"
+     ng-repeat="image in item.species.images">
+    <img ng-src="{{image.versions.low.url}}" ng-click="showLargerImage(item,image)" class="speciesImage">
+  </p>
+
+
+  <p ng-show="!item.species.picturesTab.show">No images yet</p>
+
+</accordion-group>
+
+
+<accordion-group
+  is-open="item.species.resourcesTab.open || false">
+  <accordion-heading>
+    <span ng-class="{'disabledHeading': !item.species.resourcesTab.show}">Resources</span></accordion-heading>
+
+  <p>{{item.species.other_information }}</p>
+
+  <p>{{item.species.other_uses }}</p>
+
+
+  <p ng-show="item.species.wiki_link !=''">
+    <a href="{{item.species.wiki_link}}" target="_new">{{item.species.wiki_link
+      }}</a>
+  </p>
+
+  <p ng-show="item.species.ala_link != ''">
+    <a href="{{item.species.ala_link}}" target="_new">{{item.species.ala_link
+      }}</a>
+  </p>
+
+  <p ng-show="!item.species.resourcesTab.show">No data available</p>
+
+</accordion-group>
+
+
+
+

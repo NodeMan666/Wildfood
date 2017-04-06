@@ -1,0 +1,352 @@
+.infoWindow {
+	margin-top: 8px;
+	background-color: white;
+	padding: 5px;
+	color: #6f6f6f;
+	font-size: 13px;
+}
+
+.infoWindow .planttitle {
+	margin-bottom: 0px;
+	margin-top: 0px;
+	margin-left: 5px;
+	padding-top: 8px;
+}
+
+.infoWindow .subtitle {
+	margin-bottom: 0px;
+	margin-left: 5px;
+}
+
+.infoWindow .planttitle .fa {
+
+}
+
+.infoWindow .planttitle .fa.icon_confirmed {
+
+}
+
+.infoWindow .listing-footer {
+	position: relative;
+	border: 1px solid #d3d3d3;
+	border-top: none;
+	-moz-border-radius: 0 0 2px 2px;
+	-webkit-border-radius: 0 0 2px 2px;
+	border-radius: 0 0 2px 2px;
+	cursor: pointer;
+	clear: left;
+}
+
+.infoWindow  .stream_item_header_small {
+	padding: 5px;
+}
+
+.infoWindow  .thumbnail {
+	padding: 0px;
+	border-radius: 2px;
+	// border: 1px solid #333;
+	float: left;
+	margin-right: 5px;
+}
+
+.additionalInfo h3{
+}
+.showExtraInfoTitle{
+	margin:0px;
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.showExtraInfoSubtitle{
+	color: #B8B4B4;
+	font-size: 16px;
+	margin:0px;
+  margin-bottom: 15px;
+}
+.leftItem{
+	margin-left: 15px;
+}
+
+.rightItem{
+margin-right: 30px;
+}
+
+
+.infoWindow  .description {
+	padding: 5px;
+	border-radius: 2px;
+	border: 1px solid #d3d3d3;
+	/* float: right; */
+	height: 150px;
+	/* margin-top: -10px; */
+	/* width: 30px; */
+	margin-bottom: 0px;
+	color: #6f6f6f
+}
+
+.infoWindow  .descriptionFull {
+	padding: 5px;
+	border-radius: 2px;
+	border: 1px solid #d3d3d3;
+	min-height: 150px;
+	margin-bottom: 0px;
+	color: #6f6f6f;
+	margin-bottom: 0px;
+}
+
+.infoWindow .isFavoriteIcon {
+	position: absolute;
+	left: -3px;
+	top: 0px;
+	bottom: 9px;
+	color: $favorited_color;
+	font-size: 15px;
+	z-index: 2;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+	bottom: 9px;
+}
+
+.infoWindow .hasCommentsIcon {
+	position: absolute;
+	right: 9px;
+	bottom: 9px;
+	/* 	color: #fff; */
+	font-size: 20px;
+	z-index: 2;
+	/* text-shadow: 0 1px 0 rgba(0,0,0,0.8); */
+}
+
+.infoWindow .hasCommentsIcon:hover {
+	color: #000;
+}
+
+.infoWindow .hasCommentsIcon .count {
+	color: #393c3d;
+	position: absolute;
+	top: 7px;
+	right: 0;
+	zoom: 1;
+	padding: 0;
+	margin: 0;
+	width: 26px;
+	font-size: 13px;
+	text-align: center;
+	font-style: normal;
+	text-shadow: none;
+}
+
+.infoWindow .hasOthersIcon {
+	position: absolute;
+	color: #BADD76;
+	right: 40px;
+	bottom: 9px;
+	/* 	color: #fff; */
+	font-size: 17px;
+	z-index: 2;
+	/* text-shadow: 0 1px 0 rgba(0,0,0,0.8); */
+}
+
+.infoWindow .hasOthersIcon .count {
+	margin-left: 3px
+}
+
+
+
+.infoWindow .avatar_small:hover {
+	border: 1px solid #d3d3d3;
+}
+
+.infoWindow .username {
+	margin-left: 5px
+}
+
+.infoWindow .user {
+	margin-left: 5px
+}
+
+.planttitle {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+}
+
+.infoWindow .carousel-control.right {
+	right: 0;
+	left: auto;
+}
+
+.infoWindow .carousel-control {
+	width: auto;
+}
+
+.infoWindow .carousel-control:hover {
+	text-shadow: 0 3px 5px #000;
+}
+
+.carousel-control.left {
+	background-image: none;
+}
+
+.infoWindow  .carousel-control .glyphicons-chevron-left,.carousel-control .glyphicons-chevron-right,.carousel-control .icon-prev,.carousel-control .icon-next
+	{
+	font-size: 25px;
+	/*   font-family: FontAwesome; */
+	font-family: 'Glyphicons Halflings';
+}
+
+
+
+.infoWindow  .carousel-control .glyphicon-chevron-right {
+	right: 90px;
+}
+
+.infoWindow .carousel-control .glyphicon-chevron-right {
+	position: absolute;
+	top: 80px;
+	z-index: 5;
+	display: inline-block;
+}
+
+.infoWindow .carousel-control .glyphicon-chevron-left {
+	position: absolute;
+	top: 80px;
+	z-index: 5;
+	left: -2px;
+	color: #E2E2E2;
+	text-shadow: 0 3px 4px #000;
+}
+
+
+.additionalInfo {
+border: 1px solid #CCCCCC;
+margin: 15px;
+border-radius: 5px;
+  background-color: #fff;
+}
+
+
+.additionalInfo .deleteItem {
+  /* top: 30px; */
+
+right: 40px;
+cursor:pointer;
+}
+
+.closeMarker{
+border: 2px solid #C2CF33;
+}
+.fairlycloseMarker{
+border: 2px solid #D6E717;
+}
+
+.farMarker{
+
+}
+
+
+
+
+.editMarker{
+ font-size: 1em;
+cursor: pointer;
+color: rgb(201, 201, 201);
+   margin-right:5px;
+    margin-bottom:5px;
+}
+
+.editMarker:hover{
+
+color: #000;
+
+}
+
+.markerStubItem {
+min-height: 190px;
+width: 140px;
+border: 1px solid #ddd;
+cursor: pointer;
+padding-top: 5px;
+padding-right: 5px;
+margin: 5px;
+border: 1px solid #ddd;
+border-radius: 3px;
+font-size: smaller;
+color: grey;
+}
+
+.mymarkerStubItem {
+  min-height: 240px;
+  width: 140px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: smaller;
+  color: grey;
+}
+
+.markersquaretext {
+margin-bottom: 10px;
+margin-top: 10px;
+height: 12px;
+}
+
+
+.markersquaretext_planttitle {
+margin-bottom: 10px;
+margin-top: 5px;
+height: 12px;
+}
+.mymarkerStubItem{
+  .plantConfirmationIcon {
+margin-right: 1px;
+  }
+}
+
+.myMarkerSource{
+position: absolute;
+right: -2px;
+top: -7px;
+width: 20px;
+height: 20px;
+font-size: 1.5em;
+}
+
+.userTagsUsers{
+  margin-left: 30px;
+}
+
+.marker_sort_div{
+  font-size: small;
+}
+.marker_sort_div a{
+  font-size: small;
+}
+
+.showMore{
+  cursor: pointer;
+  clear: both;
+  color: #3b5998;
+  font-weight: bold;
+  line-height: 50px;
+  text-align: center;
+  background: #fafbfc;
+  border-radius: 3px;
+  border: 1px solid #d3d6db;
+  display: block;
+  height: auto;
+  line-height: 40px;
+}
+
+
+.squarefavorite {
+  color: #FF9B00;
+  position: absolute;
+  top: -10px;
+  font-size: 1em;
+  left: -4px;
+}

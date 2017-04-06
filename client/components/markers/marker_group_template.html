@@ -1,0 +1,33 @@
+<div class="row additionalInfo" collapse="group.collapsed" id="{{panelid}}">
+				<span class="deleteItem" data-ng-click="group.collapsed = true"><i
+                        class="fa fa-times fa-lg"></i> </span>
+
+    <h3 class="leftItem showExtraInfoTitle">
+       <span ng-transclude/>
+    </h3>
+
+
+    <div class="loading" ng-show="group.loading">
+        <i class="fa fa-cog fa-spin"></i> <span class="loadingtext">Loading
+							please be patient</span>
+
+    </div>
+    <h3 class="leftItem showExtraInfoSubtitle"
+        ng-show="group.markers.length==0 && !group.loading"
+        id="{{panelid_notags}}">No tags to show</h3>
+
+    <div style="clear: left;" class="leftItem">
+        <div
+                ng-repeat="marker in group.markers   |  orderBy:group.sortpredicate:group.sortdirection">
+            <div ng-include="template"/>
+        </div>
+    </div>
+    <div ng-click="showMoreMarkers()" ng-show="moreMarkersToShow()&& !group.loading"
+         class="showMore">Show More...
+    </div>
+    <div ng-click="showLessMarkers()" ng-show="lessMarkersToShow()&& !group.loading"
+         class="showMore">Show less...
+    </div>
+</div>
+
+

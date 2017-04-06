@@ -1,0 +1,56 @@
+#markerAdmin{
+  margin:40px;
+
+.markerAdminItem {
+	border: 2px solid #ddd;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 3px;
+}
+.deleteItem {
+
+top: -15px;
+}
+.planttitle {
+margin-bottom: 10px;
+margin-top: 10px;
+font-size: large;
+}
+
+.itemReady{
+  border: 2px solid #74C274;
+}
+
+.itemNotReady{
+  border: 4px solid #D4A8A7;
+}
+
+.inactive{
+  border: 1px dashed #333;
+  background-color: rgba(240, 243, 242, 0.49);
+}
+
+.inactive .planttitle{
+  // color: #F5F5F5;
+  
+}
+}
+
+#editSpecies {
+  margin: 40px;
+  
+}
+
+.selected_button{
+background-image: none;
+background-color: #A6CF12;
+color: white;
+}
+
+.infopanel{
+background-color: white;
+border: 2px #A6CF12 solid;
+border-radius: 5px;
+padding: 20px;
+margin: 20px;
+}

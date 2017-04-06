@@ -1,0 +1,47 @@
+<div ng-controller="CommentCtrl">
+  <form name="commentForm" novalidate class="commentform">
+
+    <div class="actionItem">
+      <span class="Icon Icon--tweet Icon--small"></span> <i
+      class="fa fa-comment fa-lg"></i> <span class="text"
+                                             ng-click="addComment(item)" id="link_add_comment">Add Comment</span>
+    </div>
+
+
+    <div class="actionItem" ng-show="addingComment"
+         style="margin-bottom: 20px;" id="content_addcomment_panel">
+		<span class="deleteComment" data-ng-click="collapseComment()"
+          ng-show="!loading"><i class="fa fa-times fa-lg" id="link_hidecomment"></i> </span>
+
+      <textarea class="form-control" rows="2" ng-model="addedCommentText"
+                style="margin-top: 20px; margin-bottom: 10px;"
+                name="addedCommentText" ng-disabled="loading" id="input_comment"></textarea>
+
+      <div class="loading" ng-show="loading">
+        <i class="fa fa-cog fa-spin"></i> <span class="loadingtext">Submitting
+				the comment</span>
+
+      </div>
+
+
+      <div class="upload-div" style="clear: left">
+        <div class="actionItem" class="error-note">
+          <p>{{commentError}}</p>
+        </div>
+
+        <alert ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}
+        </alert>
+
+        <div image-selector="file" image-selector-title="'Add Photo'" image-selector-alerts="alerts"
+             ng-disabled="loading" image-selector-deleted-files="deletedImages"/>
+
+      </div>
+
+
+      <a class="btn btn-comment btn-primary" style="float: right;"
+         ng-click="submitComment(item)" ng-disabled="loading" id="link_submitcomment"> Submit </a>
+
+      <hr/>
+    </div>
+  </form>
+</div>

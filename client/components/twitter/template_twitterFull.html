@@ -1,0 +1,15 @@
+
+<div class='stream_item_header'>
+	<a ng-click="onLinkClick()" class="link"><img
+		ng-src='{{item.owner.profile_picture}}' class='avatar'
+		title="{{item.owner.profile_link}}"></a> <a  ng-click="onLinkClick()" class="link"
+		target='_new'> <strong title="{{item.owner.profile_link}}">{{item.owner.fullname}}</strong></a>
+	<span ng-show='item.owner.showAt' class='username'>@</span><span
+		ng-show='item.owner.showUser'> <a  ng-click="onLinkClick()" class="link"
+		ng-show='item.owner.showUserNameAsLink' target='_new'
+		title="{{item.owner.profile_link}}" title="{{item.owner.profile_link}}">{{item.owner.username}}</a>
+		<span ng-show='!item.owner.showUserNameAsLink' class='username'
+		title="{{item.owner.profile_link}}">{{item.owner.username}}</span></span>
+	<div class='username' title="{{item.created | fulldate}}">{{item.created
+		| dynamicDate}}</div>
+</div>

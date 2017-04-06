@@ -1,0 +1,117 @@
+.avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 5px;
+	-moz-force-broken-image-icon: 1;
+}
+
+
+.stream_item_header {
+	margin-left: 58px;
+	margin-top: 12px;
+}
+
+.stream_item_header .avatar {
+	float: left;
+	margin-top: -2px;
+	margin-left: -58px;
+}
+
+.avatar_small {
+	width: 30px;
+	height: 30px;
+	border-radius: 3px;
+	-moz-force-broken-image-icon: 1;
+}
+
+.stream_item_header_small {
+	margin-left: 35px;
+	margin-top: 0px;
+	font-size: 12px;
+}
+
+.stream_item_header_small .avatar_small {
+	float: left;
+	margin-top: 0px;
+	margin-left: -35px;
+}
+
+.username,.time {
+	color: $comment_username_text_color;
+}
+
+.btn-comment {
+	background-color: $comment_button_bg_color;
+	border-color: $comment_button_border_color;
+	color: $comment_button_text_color;
+}
+
+.btn-comment:hover {
+	background-color: $comment_h_button_bg_color;
+	border-color: $comment_h_button_border_color;
+	color: $comment_h_button_text_color;
+}
+
+.comments .actionBar {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.uploaFilePreview {
+	width: 100px;
+	margin: 10px;
+	font-size: smaller;
+	color: grey;
+}
+
+.uploaFilePreview img {
+	width: 60px;
+	height: 60px;
+}
+.uploaFilePreview .progress{
+	width: 60px;
+	margin-top: 10px;
+}
+
+
+.comments hr{
+  margin-top: 50px;
+}
+
+
+.deleteComment {
+font-size: 0.8em;
+float: right;
+cursor: pointer;
+}
+
+.commentConent hr{
+   margin-top: 10px;
+}
+
+.editComment{
+ font-size: 0.8em;
+float: right;
+cursor: pointer;
+margin-top: -40px;
+color: rgb(201, 201, 201);
+   
+}
+
+.editComment:hover{
+ 
+	color: #000;
+   
+}
+
+.commentImageThumb{
+	width: 120px;
+	height: 120px;
+	cursor:pointer;
+	
+}
+
+.commentform .deleteImagePreview{
+margin-right: 25px;
+margin-top: -8px;
+}

@@ -1,0 +1,108 @@
+<div ng-show="!item.removed"
+     data-ng-class="{'itemReady': item.valid, 'itemNotReady': !item.valid, 'inactive': !item.active}"
+     class="markerAdminItem col-sm-4 noforest">
+
+				<span class="deleteItem" data-ng-click="removeFromScreen(item)"><i
+                        class="fa fa-times-circle fa-lg"></i> </span> <a class="btn"
+                                                                         style="float: right; color: #99CC33"
+                                                                         ng-show="item.isMatched()"><i
+        class="fa fa-check-circle"></i> MATCHED </a> <a class="btn"
+                                                        style="float: right; color: #333"
+                                                        ng-show="!item.isMatched()"><i
+        class="fa fa-check-circle"></i> UNMATCHED </a> <a class="btn"
+                                                          style="float: right; color: #99CC33"
+                                                          ng-click="hide(item)"
+                                                          ng-show="item.active"><i
+        class="fa fa-check-circle"></i> ACTIVE
+</a> <a class="btn" style="float: right; color: #333"
+        ng-click="unhide(item)" ng-show="!item.active"><i
+        class="fa fa-check-circle"></i> INACTIVE </a>
+
+
+    <a class="btn"
+       style="float: right; color: #333"
+       ng-click="process(item)"
+       ng-show="!item.verified"> <i
+            class="fa fa-check-circle"></i>
+        NOT PROCESSED
+    </a> <a class="btn" style="float: right; color: #99CC33"
+            ng-click="unprocess(item)" ng-show=" item.verified"> <i
+        class="fa fa-check-circle"></i> PROCESSED
+</a>
+
+    <a class="btn"
+       style="float: right; color: #333"
+       ng-click="makeKnown(item)"
+       ng-show="item.plant_unknown"> <i
+            class="fa fa-check-circle"></i>
+        UNKNOWN
+    </a> <a class="btn" style="float: right; color: #99CC33"
+            ng-click="makeUnknown(item)" ng-show="!item.plant_unknown"> <i
+        class="fa fa-check-circle"></i> KNOWN
+</a>
+    <a class="btn"
+       style="float: right; color: #333"
+       ng-click="permanentdelete(item)"> <i
+            class="fa fa-times-circle"></i>
+        DELETE
+    </a>
+
+
+    <br> Species: <input ng-model="item.plantQuery"
+                         class="form-control" type="text"
+                         typeahead="plant  as plant.species.name for plant in getSpecies($viewValue)"
+                         typeahead-template-url="components/plants/plant_typeahead_template.html"
+                         typeahead-loading="loadingSpecies" placeholder="Search"
+                         style="display: inline; width: 200px;"/> <i
+        ng-show="item.loadingSpecies"
+        class="searchloading fa fa-cog fa-spin"></i> <br> <a
+        class="btn" style="float: left; color: #333"
+        ng-click="clearSpecies(item)" ng-show="item.isMatched()"> CLEAR
+    SPECIES </a>
+
+    <hr/>
+    <span marker-plant-title="item"/>
+    <table>
+        <tr>
+            <td><span user-twitter-entry-admin="item"/></td>
+            <td>
+                <p class="thumbnail markerWindow">
+
+                    <img ng-src="{{item.images[0].versions.thumb.url}}" class="roundedImage"
+                         ng-click="showBiggerPicture(item)" ng-show="item.images.length>0">
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <div ng-bind-html='item.description| enhanceLinks | cutLongestWords'
+         class="itemDescription"></div>
+
+    <span marker-long-location="item"/>
+
+    <div>
+
+        <div ng-include src="'components/comments/addComment.html'"></div>
+
+        <accordion ng-show="item.comments.length>0">
+            <accordion-group
+                    heading="Comments (+)" class="comments">
+
+                <div class="commentConent">
+                    <div ng-include src="'components/comments/listComment.html'"></div>
+                </div>
+
+
+            </accordion-group>
+        </accordion>
+      db.markers.find({_id: ObjectId("{{item._id}}")})<br/>
+      db.users.find({_id: ObjectId("{{item.owner._id}}")})<br/>
+      <span ng-show="item.plant">db.plants.find({_id: ObjectId("{{item.plant._id}}")})</span>
+<br/>
+    <!--Verified: {{item.verified}} , Active: {{item.active}}-->
+    </div>
+</div>
+</div>
+

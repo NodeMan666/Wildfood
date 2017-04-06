@@ -1,0 +1,33 @@
+<div class="image-selector">
+  <label class="filebutton"> <i class="fa fa-camera fa-lg"></i> <span>{{title}}</span>
+		<span> <input type="file" name="media_empty"
+                  ng-file-select="onFileSelectSingle($files)" ng-disabled="ngDisabled"
+                  class="file-input">
+	</span>
+  </label>
+
+  <!--<div class="name">{{file.name | ellipse:15}} ({{file.sizeInKB | number:0}} KB)</div>-->
+
+  <!--<div class="type" data-ng-hide="true">{{file.type}} {{file.valid}}</div>-->
+
+</div>
+
+
+<div class="filePreviewItem" data-ng-repeat="file in allFiles">
+  <div class="uploaFilePreview">
+		<span class="deleteImagePreview" data-ng-click="deleteItem(file)"><i
+      class="fa fa-times-circle fa-lg"></i> </span>
+
+  <span
+    >
+    <img ng-src="{{file.preview}}"
+         data-ng-class="{'itemReady': file.valid && !file.existing, 'itemNotReady': !file.valid && !file.existing}"
+         class="roundedImage" style="width: 80px; height: 80px;"></span>
+  </div>
+  <progressbar data-ng-class="{'active': file.progress!=100}" class="progress-striped"
+               value="file.progress" type="{{file.progressBarType}}" style="width: 80px" ng-show="file.showprogress">
+    {{file.progressString}}
+  </progressbar>
+
+
+</div>

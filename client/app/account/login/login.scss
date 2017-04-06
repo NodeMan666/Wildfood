@@ -1,0 +1,35 @@
+// Colors
+// --------------------------------------------------
+
+$btnText:                           #fff;
+$btnTextAlt:                        #000;
+
+$btnFacebookBackground:             #3B5998;
+$btnFacebookBackgroundHighlight:    #133783;
+$btnTwitterBackground:              #2daddc;
+$btnTwitterBackgroundHighlight:     #0271bf;
+$btnGooglePlusBackground:           #dd4b39;
+$btnGooglePlusBackgroundHighlight:  #c53727;
+$btnInstagramBackground:               #517fa4;
+$btnInstagramBackgroundHighlight:      #133783;
+
+// Social buttons
+// --------------------------------------------------
+
+.btn-facebook {
+  background-image: none;
+  @include button-variant($btnText, $btnFacebookBackgroundHighlight, $btnFacebookBackgroundHighlight);
+}
+.btn-twitter {
+  background-image: none;
+  @include button-variant($btnText, $btnTwitterBackground, $btnTwitterBackgroundHighlight);
+}
+.btn-google-plus {
+  background-image: none;
+  @include button-variant($btnText, $btnGooglePlusBackground, $btnGooglePlusBackgroundHighlight);
+}
+
+.btn-instagram {
+  background-image: none;
+  @include button-variant($btnText, $btnInstagramBackground, $btnInstagramBackgroundHighlight);
+}

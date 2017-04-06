@@ -1,0 +1,51 @@
+<div ng-show="!isAdmin()">
+    You have to log in to view this page <a class="btn" ng-click="login()">
+    Login </a>
+</div>
+
+<div ng-show="isAdmin()" class="noforest jobs">
+
+    <div class="infopanel">
+        <div ng-include src="'components/user/template_userProfile.html'"></div>
+    </div>
+    <select ng-model="filter">
+        <option value="">All</option>
+        <option value="Markers instagram import">Markers instagram import</option>
+        <option value="User Refresh">User Refresh</option>
+        <option value="plants migration">plants migration</option>
+        <option value="markers migration">markers migration</option>
+    </select>
+
+    <div id="" style="width: 100%; height: 100%;">
+
+        <pagination ng-model="currentPage" total-items="itemCount"
+                    items-per-page="resultsPerPage"></pagination>
+
+        <span ng-show="items.length==0">No results</span>
+
+        <div ng-repeat="job in items" class="jobItem">
+
+            <div class="title">{{job.jobname}} @ {{job.executionDateTime|date:'yyyy-MM-dd HH:mm'}}
+                <span ng-click="job.collapsed = !job.collapsed ">+</span>
+            </div>
+            <span collapse="job.collapsed">
+                <table border="0">
+                    <span job-value="job.totalToProcess" title="total To Process"/>
+                    <span job-value="job.totalProcesssable" title="total Processsable"/>
+                    <span job-value="job.numberOfSuccesfullyProcessed" title="number Of Succesfully Processed"/>
+                    <span job-value="job.numberOfSkipped" title="numberOfSkipped"/>
+                    <span job-value="job.numberOfAlreadyProcessed" title="number Of Already Processed"/>
+                    <span job-value="job.numberOfProcessedWithException" title="number Of Processed With Exception"/>
+                    <span job-value="job.totalToProcess" title="total To Process"/>
+                    <span job-value="job.automaticRun" title="automatic Run"/>
+                    <span job-value="job.success" title="success"/>
+                    <span job-value="job.executionTime" title="execution Time"/>
+                    <span job-value="job.jobParams" title="params"/>
+                </table>
+                <span ng-repeat="ex in job.exceptions">
+                    {{ex |json}}
+                </span>
+            </span>
+        </div>
+    </div>
+</div>

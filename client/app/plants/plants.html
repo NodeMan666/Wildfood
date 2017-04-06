@@ -1,0 +1,111 @@
+<div id="plantsContent" ng-controller="PlantsCtrl"
+     style="width: 100%; height: 100%;">
+  <script type="text/ng-template" id="plantTypeAheadTemplate.html">
+
+
+    <div class="typeAheadEntry">
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+
+      <p class="latin"
+         ng-show="match.model!=null && match.model.species!=null && match.model.species!=''">
+        (<span bind-html-unsafe="match.model.species.scientificName  "></span>)
+      </p>
+
+
+    </div>
+  </script>
+
+
+  <div id="content" class="container-fluid col-sm-12">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <div class=" col-sm-6 plantspanel">
+        <div class="">
+          <div class="loading" ng-show="loading">
+            <i class="fa fa-cog fa-spin"></i> <span class="loadingtext">Loading plants</span>
+
+          </div>
+
+
+
+        <span ng-show="filteredSpecies.length>1">
+				<strong>Sort by :</strong><span sort-group="sortpredicate" sort-group-direction="sortdirection">
+                        <span sort-item="Alphabetic" sort-property="species.name"/> |
+                        <span sort-item="AllTags" sort-property="species.marker_count" sort-default-direction="true"/>
+          |
+             <span sort-item="LocalTags" sort-property="species.local_tags" sort-default-direction="true"/>
+          <span ng-hide="!isLoggedIn()">|</span>
+                        <span sort-item="Liked" sort-property="species.isFavorite()" sort-default-direction="true"
+                              ng-hide="!isLoggedIn()"/>
+                    </span>
+        </span>
+
+        <span ng-show="filteredSpecies.length==1">
+          <a ng-click="showAll()"><strong>Show all</strong></a>
+        </span>
+
+          <div style="clear: left;">
+            <div
+              ng-repeat="item in filteredSpecies | orderBy:sortpredicate:sortdirection"
+              class=" plantDb col-md-2 plantDbItem"
+              ng-class="{'plantWithItems': item.species.marker_count > 0}"
+              ng-click="showItem(item)">
+              <div ng-include="'components/plants/template_plantSquare.html'"/>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar" class="col-sm-5 sidebar-offcanvas more_info_header"
+           role="navigation" sticky>
+
+        <div class="plantsidebar" ng-show="showDetails && item!=null && item.species!=null">
+          <h2><strong>{{item.species.name}} </strong><span class="latin">({{item.species.scientificName}})</span>
+          </h2>
+          <accordion ng-show="showDetails && item!=null && item.species!=null" close-others="false">
+            <accordion-group
+              >
+
+              <accordion-heading>
+
+                <div class="actionItem" ng-show="item.species.marker_count > 0"
+                     ng-click="showAllSpeciesLocations(item)">
+                  <i class="fa fa-map-marker fa-lg"></i> <span class="text">Find
+						on map</span>
+                </div>
+
+                <div class="actionItem" ng-click="adminPlant(item)" ng-show="isAmin()">
+                  <i class="fa fa-edit fa-lg"></i> <span class="text">Admin</span>
+                </div>
+
+
+                <div class="actionItem">
+					<span ng-class="{'favorited': item.species.isFavorite()}"> <i
+            class="fa fa-heart fa-lg"></i> <span class="text"
+                                                 ng-click="onFavoriteClick(item)" ng-show='!item.species.isFavorite()'>Like</span>
+						<span class="text" ng-click="onFavoriteClick(item)"
+                  ng-show='item.species.isFavorite()'>Liked</span>
+					</span>
+                </div>
+
+
+              </accordion-heading>
+
+
+              <!-- 				</div> --> <!-- 				<div class="actionItem" ng-click="share(item)"> -->
+              <!-- 					<i class="fa fa-share-square fa-lg"></i> <span class="text">Share</span> -->
+              <!-- 				</div> --> </accordion-group>
+
+            <div ng-include src="'components/plants/plant_sidebar.html'"></div>
+          </accordion>
+        </div>
+        <div ng-show="!showDetails">
+          <div ng-include src="'components/plants/plant_instruction_sidebar.html'"></div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

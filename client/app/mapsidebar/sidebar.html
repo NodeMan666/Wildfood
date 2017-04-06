@@ -1,0 +1,129 @@
+
+
+<accordion close-others="oneAtATime" ng-show="item!=null">
+  <accordion-group
+    is-open="fieldnotesopen">
+    <accordion-heading>
+      <span class="detailHeader"> Field Notes </span></accordion-heading>
+
+
+    <div class="detailContent">
+      <p class="thumbnail imagepanel">
+        <img ng-src="{{item.getImageLowResUrl()}}"
+             ng-click="showLargerMarkerImage(item, item.getImage())" class="mainmarkerimage">
+      </p>
+
+
+      <div class="nexttoimagepanel">
+
+        <span marker-plant-title="item" ng-click="goToPlant(item)" style="cursor: pointer"/>
+
+        <span ng-click="goToLocation(item)">
+           <span marker-long-location="item"/>
+          </span>
+
+        <p class="location" ng-show="item.access!=null">Access:
+          {{item.access | clean}}</p>
+
+        <span user-twitter-entry-full="item" ng-click="userClicked($item)"/>
+
+      </div>
+
+      <div class="entryText">
+        <div ng-bind-html='item.description| enhanceLinks | cutLongestWords'
+             class="itemDescription"></div>
+      </div>
+
+
+      <div class='actionBar'>
+
+        <div class="actionItem" ng-show="item.isMyMarker()"
+             ng-click="editMarker(item)">
+          <i class="fa fa-edit fa-lg"></i> <span class="text">Edit</span>
+        </div>
+
+        <div class="actionItem" ng-show="item.isMyMarker()"
+             ng-click="deleteMarker(item)">
+          <i class="fa fa-times fa-lg"></i> <span class="text">Delete</span>
+        </div>
+
+
+        <div class="actionItem" ng-show="isAdmin()"
+             ng-click="adminMarker(item)">
+          <i class="fa fa-edit fa-lg"></i> <span class="text">Admin</span>
+        </div>
+
+        <div class="actionItem">
+			<span ng-class="{'favorited': item.isFavorite()}"> <i
+        class="fa fa-heart fa-lg"></i> <span class="text"
+                                             ng-click="onFavoriteClick(item)" ng-show='!item.isFavorite()'>Like</span>
+				<span class="text" ng-click="onFavoriteClick(item)"
+              ng-show='item.isFavorite()'>Liked</span>
+			</span>
+        </div>
+
+        <div class="actionItem"
+             ng-show='item.isMatched() && item.plant.marker_count > 1'
+             ng-click="showOthers(item)">
+          <i class="fa fa-map-marker fa-lg"></i> <span class="text">Find
+				others</span>
+        </div>
+
+        <div class="actionItem"
+             ng-click="showMarkersByUser(item.owner._id)">
+          <i class="fa fa-user fa-lg"></i> <span class="text">Tags by user</span>
+        </div>
+        <!--<div class="actionItem"-->
+          <!-->
+          <!--<span class="text">Share:</span>-->
+        <!--</div>-->
+        <!--<div class="actionItem"-->
+             <!--ng-click="share(item, 'facebook')">-->
+          <!--<i class="fa fa-facebook-square fa-lg"></i>-->
+        <!--</div>-->
+        <!--<div class="actionItem"-->
+             <!--ng-click="share(item, 'twitter')">-->
+          <!--<i class="fa fa-twitter-square fa-lg"></i>-->
+        <!--</div>-->
+        <!--<div class="actionItem"-->
+             <!--ng-click="share(item, 'instagram')">-->
+          <!--<i class="fa fa-instagram-square fa-lg"></i>-->
+        <!--</div>-->
+        <!--<a twitter data-count='horizontal' data-url='{{url}}' data-via='notsosleepy' data-size="medium" data-text='test' ></a>-->
+        <!-- 		<div class="actionItem" ng-click="share(item)"> -->
+        <!-- 			<i class="fa fa-share-square fa-lg"></i> <span class="text">Share</span> -->
+        <!-- 		</div> -->
+        <!-- 		<br /> -->
+
+      </div>
+
+    </div>
+    <!--<div facebook class="facebookShare" data-title='Test' data-picture-url='http://i.imgur.com/WACv9Cl.jpg' data-url='{{item.myurl}}'></div>-->
+    <!--<br /><br />-->
+
+    <!--<br /><br />-->
+
+    <div class="entryText" ng-show="true">
+      <small>id: {{item._id}},owner: {{item.owner._id}},legacyid: {{item.legacyid}},source_id: {{item.source_id}}
+        ,migrated: {{item.migrated}},imported: {{item.imported}}
+        <br/>
+        db.markers.find({_id: ObjectId("{{item._id}}")})
+        db.users.find({_id: ObjectId("{{item.owner._id}}")})
+        <span ng-show="item.plant">db.plants.find({_id: ObjectId("{{item.plant._id}}")})</span>
+      </small>
+    </div>
+  </accordion-group>
+  <accordion-group heading="Comments" is-open="openComments" class="comments">
+
+
+    <div ng-include src="'components/comments/commentsBar.html'"></div>
+  </accordion-group>
+
+
+  <div ng-include src="'components/plants/plant_sidebar.html'" ng-show="item!=null && item.species!=null"></div>
+
+</accordion>
+
+
+
+

@@ -1,0 +1,85 @@
+
+
+.deleteItem {
+	/* margin-top: -10px; */
+	color: #DDDDDD;
+	font-size: 1em;
+	/* top: 0px; */
+	position: absolute;
+	right: 6px;
+	text-align: center;
+	background: white;
+	cursor: pointer;
+}
+
+
+.deleteItem:hover {
+  color: #000000;
+}
+
+
+.deleteImagePreview {
+color: #DDDDDD;
+float: right;
+font-size: 1em;
+cursor: pointer;
+margin-right: 5px;
+margin-top: -7px;
+
+}
+
+.deleteImagePreview:hover {
+  color: #000000;
+}
+
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.ngdialog-close:before {
+  background: transparent;
+  border-radius: 3px;
+  color: #bbb;
+  content: '\00D7';
+  font-size: 26px;
+  font-weight: 400;
+  height: 30px;
+  line-height: 26px;
+  position: absolute;
+  right: 3px;
+  text-align: center;
+  top: 3px;
+  width: 30px;
+  cursor: pointer !important;
+  font-family: 'Helvetica', Arial, sans-serif;
+}
+.ngdialog-close{
+  cursor: pointer;
+}
+
+
+.itemReady{
+  border: 2px solid #74C274 !important;
+}
+.itemNotReady{
+  border: 2px solid #D4A8A7 !important;
+}
+
+
+.validCheck {
+
+  color: #74C274;
+  font-size: 1.5em;
+  bottom: -10px;
+  position: absolute;
+  right: 6px;
+  text-align: center;
+  background: white;
+}

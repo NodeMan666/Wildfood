@@ -1,0 +1,183 @@
+<div ng-controller="HeaderCtrl">
+
+    <script type="text/ng-template" id="searchconfigPopoverTemplate.html">
+
+        <div class="triangle"></div>
+
+        <div class="ns-popover-tooltip">
+
+            <ul>
+                <li>Search:</li>
+                <li><input type="checkbox" ng-model="searchconfig.marker"/> Tags</li>
+                <li><input type="checkbox" ng-model="searchconfig.plant"/> Plants</li>
+                <li><input type="checkbox" ng-model="searchconfig.user"/> Users</li>
+                <li><input type="checkbox" ng-model="searchconfig.location"/> Locations</li>
+            </ul>
+
+            <button ng-click="makeCurrentLocationDefault();hidePopover();">Make current location my default</button>
+            <br/>
+            <br/>
+            <button ng-click="hidePopover()">Close</button>
+
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="climateDefail.html">
+
+        <div class="triangle"></div>
+
+        <div class="ns-popover-tooltip climatePopup">
+
+            <ul>
+                <li><b>Current climate zone:</b></li>
+                <li ng-show="currentLocationAddress !=''"> {{currentLocationAddress}}</li>
+                <li ng-show="currentClimateZone.bomcode==-12">No climate zone info available</li>
+                <li ng-show="currentClimateZone.bomcode!=-12">BOM {{currentClimateZone.bomcode}}</li>
+                <li ng-show="currentClimateZone.bomcode!=-12">{{currentClimateZone.category}}</li>
+                <li ng-show="currentClimateZone.bomcode!=-12">{{currentClimateZone.description}}</li>
+                <li ng-show="currentClimateZone.bomcode!=-12">
+            <span ng-show="currentClimateZone.samplePlaces && currentClimateZone.samplePlaces.length>0">
+                <span ng-repeat="sample in currentClimateZone.samplePlaces">
+                    {{sample.town}}
+                </span>
+            </span>
+
+                </li>
+                <li ng-show="currentClimateZone.bomcode!=-12">For more info on climate zones:</li>
+                <li ng-show="currentClimateZone.bomcode!=-12"><a
+                        href="http://www.bom.gov.au/jsp/ncc/climate_averages/climate-classifications/index.jsp?maptype=kpn#maps"
+                        target="_blank">bom.gov.au/</a></li>
+            </ul>
+
+            <button ng-click="hidePopover()">Close</button>
+
+        </div>
+    </script>
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="slide-nav">
+
+        <div id="head" class="container-fluid">
+
+            <div class="navbar-header">
+                <a class="navbar-toggle" id="menubar">
+                    <i class="exp-font-color fa fa-bars fa-2x"></i>
+                </a>
+                <a class="navbar-brand"><img src="assets/images/Logo_small_PNG.png"
+                                             style="width:130px; cursor: pointer; margin-left: 15px"
+                                             ng-click="showPage('map')"></a>
+
+            </div>
+
+            <div id="slidemenu">
+
+                <ul class="nav navbar-nav" id="global-actions">
+                    <li ng-class="{'active': isMyPage('map')}">
+                        <a ng-click="showPage('map')" id="link_map" class="navilink">
+                            <i class="fa fa-globe fa-lg" style=""></i>MAP
+                        </a>
+                    </li>
+                    <li ng-class="{'active': isMyPage('plants')}">
+                        <a ng-click="showPage('plants')" id="link_plants" class="navilink">
+                            <span class="segoe fa-lg">&#x1f331;</span>PLANTS</a>
+                        </a>
+                    </li>
+                  <li ng-class="{'active': isMyPage('browse')}">
+                    <a ng-click="showPage('browse')" id="link_browse" class="navilink">
+                      <i class="fa fa-search fa-lg" style=""></i>BROWSE</a>
+                    </a>
+                  </li>
+                    <li><a href="#"></a></li>
+                </ul>
+
+                <div class="input-group navbar-form navbar-left navilink"
+                     style="margin-left: 0px; width: 280px;">
+
+                    <input class="form-control" type="text" id="input_mainsearch"
+                           typeahead="item as item.description for item in executeSearch($viewValue)"
+                           typeahead-template-url="app/header/main_search_template.html"
+                           typeahead-loading="loadingSpecies" ng-model="mainSearch" placeholder="Search"
+                           style="display: inline; width: 300px;"/>
+
+                    <span class="input-group-addon">
+                        <a ng-click="cancelSearch()" id="link_mainsearch_cancel">
+                            <i class="fa fa-times  fa-lg mainsearchfiltericon"></i>
+                        </a>
+					</span>
+                    <span class="input-group-addon">
+                        <a ng-click="configSearch()" ns-popover
+                           ns-popover-template="searchconfigPopoverTemplate.html"
+                           ns-popover-trigger="click" ns-popover-theme="ns-popover-tooltip-theme"
+                           ns-popover-hide-on-click="false" ns-popover-timeout="1"
+                           id="link_mainsearch_filter">
+                            <i class="fa fa-gear fa-lg mainsearchfiltericon"></i>
+                        </a>
+                    </span>
+
+                    <i ng-show="loadingSpecies" class="searchloading fa fa-cog fa-spin"></i>
+                    <span typeahead-extra="pushedtypeaheadselection" select="itemselected($item)"
+                          template-url="app/header/main_search_template.html"/>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li ng-show="isLoggedIn()"><img width="30" height="30"
+                                                    ng-src="{{getCurrentUser().profile_picture}}" class="avatar_small"
+                                                    alt=""
+                                                    style="margin-top: 10px;"
+                                                    ng-show="getCurrentUser().profile_picture!=null">
+                    </li>
+                    <li ng-show="isLoggedIn()" class="dropdown loggedUser">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"  class="navilink">
+                            <span id="content_user">{{getCurrentUser().name}}  </span>
+                            <i class="fa" ng-class="{'fa-twitter': getCurrentUser().network=='twitter','fa-facebook-square': getCurrentUser().network=='facebook','fa-google-plus-square': getCurrentUser().network=='google','fa-instagram': getCurrentUser().network=='instagram'}"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+
+
+                            <li ng-click="showMyItems()" id="link_myitems"  class="navilink">
+                                <a><i class="fa fa-map-marker fa-lg" style="color: #99CC33"></i> My tags</a>
+                            </li>
+                            <!--<li ng-click="showMyFavorites()" id="link_favorites"><a><i-->
+                            <!--class="fa fa-star fa-lg" style="color: #FF9B00"></i> Favorite tags</a></li>-->
+                            <li id="link_settings" ng-show="isCurrentUserLocal()"  class="navilink">
+                                <a href="/settings"> Settings</a>
+                            </li>
+                            <li ng-click="logout()" id="link_logout"  class="navilink">
+                                <a> Log out</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li ng-show="!isLoggedIn()" ng-click="login()" id="link_login"  class="navilink"><a>Log In</a></li>
+                    <li ng-show="!isLoggedIn()" ng-click="signup()" id="link_signup"  class="navilink"><a>Sign Up</a></li>
+
+                    <li ng-click="goHome()" id="link_home"  class="navilink">
+                        <a>
+                            <i class="fa fa-bullseye fa-2 gohomeicon"></i>Home
+                        </a>
+                    </li>
+
+                    <li id="climate_zone">
+                        <a ns-popover ns-popover-template="climateDefail.html" ns-popover-trigger="click"
+                           ns-popover-theme="ns-popover-tooltip-theme" ns-popover-hide-on-click="false"
+                           ns-popover-timeout="1"><i class="fa fa-cloud fa-lg"></i></a>
+                    </li>
+
+                    <li>
+                        <a id="list-your-space" class="yellow btn btn-special navilink"
+                           style="margin-bottom: 10px;" ng-click="addMarker()" id="link_addtag" >
+                            <i class="fa fa-map-marker  fa-lg"></i>New tag
+                        </a>
+                    </li>
+
+                    <li><a></a></li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </nav>
+</div>

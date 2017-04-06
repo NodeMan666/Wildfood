@@ -1,0 +1,111 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container settings">
+  <div class="row">
+    <div class="col-sm-12">
+      <br/>
+      <br/>
+      <h3>User profile</h3>
+      db.users.find({_id: ObjectId("{{getCurrentUser()._id}}")})
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="detailsform" ng-submit="updateDetails(detailsform)" novalidate>
+        <div class="form-group" ng-class="{ 'has-success': detailsform.name.$valid && submitted,
+                                            'has-error': detailsform.name.$invalid && submitted }">
+          <label>Name</label>
+
+          <input type="text" name="name" class="form-control" ng-model="user.name"
+                 required/>
+          <p class="help-block" ng-show="detailsform.name.$error.required && submitted">
+            A name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': detailsform.email.$valid && submitted,
+                                            'has-error': detailsform.email.$invalid && submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="user.email"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="detailsform.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="detailsform.email.$error.required && submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="detailsform.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Profile picture</label>
+
+          <div image-selector="file" image-selector-title="'Add Photo'" image-selector-alerts="alerts"
+               ng-disabled="loading" />
+
+
+        </div>
+        <p class="success-block"> {{ message }} </p>
+        <div>
+          <button class="btn btn-inverse btn-lg btn-login" type="submit">
+            Save details
+          </button>
+
+        </div>
+
+
+
+      </form>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Change Password</h3>
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
+
+        <div class="form-group">
+          <label>Current Password</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                 mongoose-error/>
+
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+            {{ errors.other }}
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>New Password</label>
+
+          <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                 ng-minlength="3"
+                 required/>
+
+          <p class="help-block"
+             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submittedchangepw)">
+            Password must be at least 3 characters.
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Repeat new Password</label>
+
+          <input type="password" name="newPasswordRepeat" class="form-control" ng-model="user.newPasswordRepeat"
+                 ng-minlength="3"
+                 required/>
+
+        </div>
+
+
+        <p class="success-block"> {{ messagePw }} </p>
+        <button class="btn btn-lg btn-primary" type="submit">Save new password</button>
+      </form>
+    </div>
+  </div>
+</div>

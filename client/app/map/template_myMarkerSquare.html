@@ -1,0 +1,20 @@
+<div class="col-md-1 mymarkerStubItem"
+     ng-click="showSingleTargetMarker(marker)" class="closeMarker">
+
+    <span marker-source-icon="marker"/>
+
+    <span marker-thumb="marker"/>
+
+    <span marker-plant-title-short="marker"/>
+
+    <span marker-short-title="marker"/>
+
+    <span marker-short-location="marker"/>
+
+
+	<span class="editMarker" ng-click="editMarker(marker)" ng-show="marker.isMyMarker()"> <i
+            class="fa fa-edit fa-lg"></i> Edit
+	</span> <span class="editMarker" ng-click="deleteMarker(marker)" ng-show="marker.isMyMarker()"> <i
+        class="fa fa-times fa-lg"></i> Delete
+	</span>
+</div>

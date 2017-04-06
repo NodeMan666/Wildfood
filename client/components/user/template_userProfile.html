@@ -1,0 +1,10 @@
+Logged in as : <img width="30" height="30"
+	 ng-src="{{getCurrentUser().profile_picture}}" class="avatar_small" alt=""
+	 style="margin-top: 10px;">
+
+<span id="content_user"> {{getCurrentUser().name}} </span>
+
+<i class="fa" ng-class="{'fa-twitter': getCurrentUser().network=='twitter','fa-facebook-square': getCurrentUser().network=='facebook','fa-google-plus-square': getCurrentUser().network=='google','fa-instagram': getCurrentUser().network=='instagram'}"></i>
+
+<a class="btn"
+   ng-click="logout()"> Logout</a>

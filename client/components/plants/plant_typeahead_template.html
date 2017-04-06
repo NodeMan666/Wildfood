@@ -1,0 +1,12 @@
+<div class="typeAheadEntry">
+    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+
+    <p class="latin"
+       ng-show="match.model!=null && match.model.species!=null && match.model.species!=''">
+        (<span bind-html-unsafe="match.model.species.scientificName  "></span>)
+    </p>
+
+
+</div>
+
+

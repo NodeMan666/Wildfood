@@ -1,0 +1,44 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
+
+@import './../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import './../bower_components/font-awesome/scss/font-awesome';
+
+/**
+ * App-wide Styles
+ */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+// Component styles are injected through grunt
+// injector
+@import '_scss/1_variables.scss';
+@import '_scss/2_app.scss';
+@import '_scss/3_plants.scss';
+@import '_scss/4_map.scss';
+@import '_scss/5_sidebar.scss';
+@import '_scss/6_plantsidebar.scss';
+@import '_scss/7_headerfooter.scss';
+@import '_scss/8_addmarker.scss';
+@import '_scss/9_comments.scss';
+@import '_scss/91_modals.scss';
+@import '_scss/92_admin.scss';
+@import '_scss/edibilityProfileItem.scss';
+@import '_scss/imageselector.scss';
+@import '_scss/jsbin-off-canvas-menu.scss';
+@import '_scss/modal.scss';
+@import '_scss/popover.scss';
+@import '_scss/seasonalProfile.scss';
+@import '_scss/sharing.scss';
+@import '_scss/sorting.scss';
+@import 'account/login/login.scss';
+@import 'account/settings/settings.scss';
+@import 'admin/user/admin.scss';
+@import 'intro/intro.scss';
+@import 'jobs/jobs.scss';
+// endinjector

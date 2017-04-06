@@ -1,0 +1,78 @@
+
+#addMarkerContent {
+	margin: 10px;
+	width: 50%;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+  margin-top: 0px;
+  background-color: #fff;
+  padding: 70px;
+  padding-top: 20px;
+
+	.add-content {
+		margin: 20px;
+    margin-bottom: 0px;
+	}
+	h3 {
+		margin-top: 0px;
+		margin-bottom: 10px;
+
+	}
+	.angular-google-map-container {
+		width: 100%;
+		height: 350px;
+	}
+}
+
+.addMarkerinfopopup {
+	width: 150px;
+	height: 100px;
+	overflow: hidden;
+}
+
+
+.has-error .map-canvas {
+	border: 1px;
+	border-color: #a94442;
+	border-style: solid;
+}
+
+.fileItem {
+	height: 170px;
+	width: 100px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	padding-top: 10px;
+	padding-right: 10px;
+	margin: 10px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: smaller;
+	color: grey;
+}
+
+
+
+.fileItem img {
+	width: 70px;
+	height: 70px;
+}
+
+.fileItemInner {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+
+
+.deleteItem:hover {
+	color: #000000;
+}
+
+.name {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+

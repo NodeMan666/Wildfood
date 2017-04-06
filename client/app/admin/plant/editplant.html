@@ -1,0 +1,199 @@
+<div id="" style="width: 100%; height: 100%;" class="noforest">
+  <div id="editSpecies">
+
+    <div class="row form-group has-feedback" ng-show="item._id!=null">
+      db.plants.find({_id: ObjectId("{{item._id}}")})
+    </div>
+
+    <alert ng-repeat="alert in alerts" type="alert.type"
+           close="closeAlert($index)">{{alert.msg}}
+    </alert>
+
+
+    <!--<tab heading="Static title">Static content</tab>-->
+    <form name="speciesForm" role="form" novalidate="true">
+      <tabset>
+        <tab heading="Plant details">
+          <div class="row form-group has-feedback">
+            <div data-ng-class="{'has-error':speciesForm.localisedProfile.en_au.commonNames.$invalid}" style="margin-top: 20px">
+              <label>Names (*)</label>
+              <span string-array-edit="item.localisedProfile.en_au.commonNames" name="name"/>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div data-ng-class="{'has-error':speciesForm.scientificName.$invalid}">
+              <label>Latin name (*)</label> <input ng-model="item.scientificName"
+                                                   data-ng-required="true" name="scientificName"> <span
+              class="help-block" data-ng-show="speciesForm.scientificName.$invalid">
+							Mandatory</span>
+
+            </div>
+
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>family</label>
+              <textarea class="form-control" rows="1"
+                        ng-model="item.family"></textarea>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>Permanency (this is to allow users to confirm the markers)</label>
+              <br/>
+              <label class="radio-inline">
+                <input type="radio" name="occessRadios" ng-model="item.permanencyType"
+                       value="permanent" required> Permanent (tree, bush)
+              </label> <label class="radio-inline"> <input type="radio"
+                                                           name="occessRadios" ng-model="item.permanencyType"
+                                                           value="stable" required> Stable (most of the time occurs at the same spot)
+            </label> <label class="radio-inline"> <input type="radio"
+                                                         name="occessRadios" ng-model="item.permanencyType" value="transient"
+                                                         required>transient
+            </label>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>Description</label>
+              <textarea class="form-control" rows="2"
+                        ng-model="item.localisedProfile.en_au.description"></textarea>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>origin</label>
+              <textarea class="form-control" rows="1"
+                        ng-model="item.localisedProfile.en_au.origin"></textarea>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>habitat: </label>
+              <textarea class="form-control" rows="2"
+                        ng-model="item.localisedProfile.en_au.habitat"></textarea>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>characteristics: </label>
+              <textarea class="form-control" rows="2"
+                        ng-model="item.localisedProfile.en_au.characteristics"></textarea>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>distinguishing_features: </label>
+              <textarea class="form-control" rows="2"
+                        ng-model="item.localisedProfile.en_au.distinguishing_features"></textarea>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>Info Notes: </label>
+              <button ng-click="addNewNote(item.localisedProfile.en_au.notes)">add new</button>
+              <div ng-repeat="i in item.localisedProfile.en_au.notes">
+                <!--Type: <select data-ng-model="i.alerttype">-->
+                <!--<option value="warning" data-ng-selected="selected">Warning</option>-->
+                <!--<option value="info">Info</option>-->
+                <!--<option value="danger">Danger</option>-->
+              <!--</select>-->
+                Text: <input ng-model="i.text"/>
+                <span ng-click="deleteNote(i,item.localisedProfile.en_au.notes)">X</span>
+                <span ng-click="moveNoteUp(i,item.localisedProfile.en_au.notes)">(MOVE UP)</span>
+              </div>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>Danger: </label>
+              <button ng-click="addNewNote(item.localisedProfile.en_au.danger)">add new</button>
+              <div ng-repeat="i in item.localisedProfile.en_au.danger">
+
+                Text: <input ng-model="i.text"/>
+                <span ng-click="deleteNote(i,item.localisedProfile.en_au.danger)">X</span>
+                <span ng-click="moveNoteUp(i,item.localisedProfile.en_au.danger)">(MOVE UP)</span>
+              </div>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>Warnings: </label>
+              <button ng-click="addNewNote(item.localisedProfile.en_au.warnings)">add new</button>
+              <div ng-repeat="i in item.localisedProfile.en_au.warnings">
+                Text: <input ng-model="i.text"/>
+                <span ng-click="deleteNote(i,item.localisedProfile.en_au.warnings)">X</span>
+                <span ng-click="moveNoteUp(i,item.localisedProfile.en_au.warnings)">(MOVE UP)</span>
+              </div>
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>ala_link</label> <input ng-model="item.ala_link"
+                                             style="width: 600px">
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <div>
+              <label>wiki_link</label> <input ng-model="item.wiki_link"
+                                              style="width: 600px">
+            </div>
+          </div>
+          <div class="row form-group has-feedback">
+            <input type="checkbox"
+                   ng-model="item.active"/> active
+          </div>
+        </tab>
+        <tab heading="Images">
+          <div class="row form-group" style="margin-top: 20px">
+            *(at least one image mandatory)
+            <div class="upload-div">
+
+              <div multi-image-selector="allFiles"
+                   image-selector-title="'Add Photos'"
+                   image-selector-alerts="alerts"/>
+
+
+            </div>
+          </div>
+        </tab>
+        <tab heading="Edibility profile">
+            <textarea class="form-control" rows="2"
+                      ng-model="item.localisedProfile.en_au.edibility.description"></textarea>
+
+          <span edibility-profile="item.edibility"/>
+        </tab>
+        <tab heading="Medicinal profile">
+            <textarea class="form-control" rows="2"
+                      ng-model="item.localisedProfile.en_au.medicinalProfile.description"></textarea>
+          <span edibility-profile="item.medicinalProfile"/>
+        </tab>
+        <tab heading="Other uses">
+            <textarea class="form-control" rows="2"
+                      ng-model="item.localisedProfile.en_au.otherUses.description"></textarea>
+          <span edibility-profile="item.otherUses"/>
+        </tab>
+
+          <tab heading="Seasonal information">
+
+            <span seasonal-profile-viewer="item.seasonalProfile"/>
+          </tab>
+
+
+        <div class="loading" ng-show="loading">
+          <i class="fa fa-cog fa-spin"></i> <span class="loadingtext">Submitting
+						the plant, please be patient</span>
+
+        </div>
+        <button class="btn btn-primary" ng-click="ok()"
+                ng-disabled="loading">Submit
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()"
+                ng-disabled="loading">Cancel
+        </button>
+  </div>
+  </tabset>
+  </form>
+
+</div>
+</div>

@@ -1,0 +1,38 @@
+<tabset>
+    <tab ng-repeat="zone in profile.items">
+        <tab-heading>
+
+            <span climate-zone-title-short="zone"/>
+            <span class="zonecube" style="background-color: {{zone.climate.color}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </tab-heading>
+        <span climate-zone-title="zone"/>
+        <br/>
+
+      Availability in this zone:
+      <div class="btn-group">
+        <label class="btn btn-success" ng-model="zone.availability" btn-radio="'Common'" uncheckable>Common</label>
+        <label class="btn btn-success" ng-model="zone.availability" btn-radio="'Rare'" uncheckable>Rare</label>
+        <label class="btn btn-success notgrowbutton" ng-model="zone.availability" btn-radio="'NotExisting'" uncheckable>Doesn't grow here</label>
+      </div>
+
+        <div>
+            <div ng-repeat="part in zone.parts" class="partdiv">
+                <div class="parttitle">
+                    {{part.part.name}}
+                </div>
+                <span ng-repeat="month in part.seasonalData">
+                    <button type="button" class="btn btn-primary" ng-model="month.mature"
+                            btn-checkbox ng-change="onchange(zone)">
+                        {{month.label}}
+                    </button>
+
+                </span>
+
+            </div>
+
+
+        </div>
+    </tab>
+
+</tabset>
+

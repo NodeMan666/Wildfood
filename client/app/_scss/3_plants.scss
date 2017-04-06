@@ -1,0 +1,72 @@
+
+.plantDb {
+  height: 220px;
+  width: 180px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  padding-top: 10px;
+  margin: 10px;
+  /*  margin: 10px; */
+  /*  padding: 10px; */
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.plantDb:hover{
+
+  border: 2px solid #ddd;
+  border-radius: 3px;
+}
+
+.plantDbItemInner {
+  /*  margin: 10px; */
+  /*  padding: 10px; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.plantDb img {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+.plantTitle {
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.plantDbItem {
+
+}
+
+.itemCountBanner {
+  margin-top: -10px;
+  color: #99CC33;
+  top: -2px;
+  position: absolute;
+  right: 30px;
+  text-align: center;
+  background: white;
+}
+.itemCountBanner span {
+  color: #000;
+}
+.itemAllCountBanner {
+  margin-top: -10px;
+  color: #77A51C;
+  top: -2px;
+  position: absolute;
+  right: 6px;
+  text-align: center;
+  background: white;
+}
+.itemAllCountBanner span {
+  color: #000;
+}
+.plantWithItems {
+  border: 3px solid #ddd;
+}
+.plantWithItems:hover{
+  border: 4px solid #ddd;
+}

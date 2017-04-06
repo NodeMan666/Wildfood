@@ -1,0 +1,33 @@
+<div id="MapContent" ng-controller="MapController"
+     style="width: 100%; height: 100%;">
+
+
+  <div class="loading" ng-show="loading">
+    <i class="fa fa-cog fa-spin"></i> <span class="loadingtext">Loading
+			please be patient</span>
+
+  </div>
+
+  <div class="row"
+       style="width: 100%; height: 100%;">
+    <div class="col-sm-7" style="height: 100%;" class="mapContainer">
+
+      <div ng-include src="'app/map/main_map_marker_groups.html'"
+           ng-controller="MarkerGroupController"></div>
+
+      <div id="map-canvas" my-google-map style="width: 100%; height: 100%;" class="forest"></div>
+    </div>
+
+    <div id="sidebar"
+         class="col-sm-5 sidebar-offcanvas more_info_header"
+         role="navigation">
+
+      <div ng-show="item==null">
+        <div ng-include src="'app/mapsidebar/map_instruction_sidebar.html'"></div>
+      </div>
+
+      <div ng-include src="'app/mapsidebar/sidebar.html'"
+           ng-controller="SidebarCtrl"></div>
+    </div>
+  </div>
+</div>

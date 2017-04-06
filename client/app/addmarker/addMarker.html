@@ -1,0 +1,113 @@
+<div id="addMarkerContent" ng-controller="AddMarkerCtrl">
+  <div>
+    <h3>
+      Click a location on the map... <img src="assets/images/gm_marker.png">
+
+      <span style="font-weight: bold;"> </span>
+    </h3>
+  </div>
+
+  <form role="form" novalidate name="form"
+        style="width: 100%; height: 100%;" ng-controller="AddMarkerCtrl">
+
+
+    <div class="row"
+         ng-class="(!isLocationProvided()) ? 'has-error' : ''"
+         style="width: 100%; height: 300px">
+      <div id="add-map-canvas" my-google-map
+           style="width: 100%; height: 300px"></div>
+    </div>
+
+
+    <div class="alert-danger" style="margin-top: 30px">
+      <alert ng-repeat="alert in alerts" type="alert.type"
+             close="closeAlert($index)" id="content_addmarker_alerts">{{alert.msg}}
+      </alert>
+    </div>
+    <div class="container-fluid add-content">
+      <div class="row form-group">
+        <div>
+          <label class="control-label" for="address">Address</label>
+            <span ng-class="(!isLocationProvided()) ? 'has-error' : ''">
+            <input ng-disabled="loading"
+                   type="text"
+                   ng-model="queryaddress"
+                   placeholder="...or you can type in an address"
+                   typeahead="address as address.formatted_address for address in getLocation($viewValue) | filter:{formatted_address:$viewValue}"
+                   typeahead-loading="loadingLocations"
+                   class="form-control"
+                   name="address"
+                   id="content_addmarker_address">
+              <i
+                ng-show="loadingLocations"
+                class="searchloading fa fa-cog fa-spin"></i>
+            </span>
+        </div>
+      </div>
+
+
+      <div class="row form-group has-feedback">
+        <label class="control-label" for="speciesField">Plant type</label>
+
+        <div ng-class="(form.speciesField.$error.required) ? 'has-error' : ''" ng-show="!addItem.plant_unknown">
+          <input type="text" name="speciesField" class="form-control" id="content_addmarker_plant"
+                 ng-model="addItem.speciesItem" placeholder="Type in the species"
+                 typeahead="plant  as plant.species.name for plant  in getSpecies($viewValue)"
+                 typeahead-template-url="components/plants/plant_typeahead_template.html"
+                 typeahead-loading="loadingSpecies" class="form-control" required ng-disabled="loading">
+          <i ng-show="loadingSpecies" class="searchloading fa fa-cog fa-spin"></i>
+
+        </div>
+
+        <div>
+          <input type="checkbox" name="plant_unknown"
+                 ng-model="addItem.plant_unknown"> Not sure
+        </div>
+      </div>
+
+
+      <div class="row form-group">
+        <label>Notes</label>
+        <textarea class="form-control" rows="2"  name="description"
+                  ng-model="addItem.description" id="content_addmarker_description"
+                  placeholder="Location notes, description, hash tags etc..." ng-disabled="loading" required></textarea>
+      </div>
+      <div class="row form-group">
+        <label>Access</label> <br/> <label class="radio-inline">
+        <input type="radio" name="accessRadios" ng-model="addItem.access"
+               value="public"> Public land
+      </label> <label class="radio-inline"> <input type="radio"
+                                                   name="accessRadios" ng-model="addItem.access"
+                                                   value="private"> Private property
+      </label> <label class="radio-inline"> <input type="radio"
+                                                   name="accessRadios" ng-model="addItem.access" value="notsure"
+        >Not sure
+      </label>
+      </div>
+
+
+      <div class="row form-group">
+
+      </div>
+      <div class="row form-group">
+        <div class="upload-div">
+          <div image-selector="file" image-selector-title="'Add Photo'" image-selector-alerts="alerts"
+               ng-disabled="loading"/>
+        </div>
+      </div>
+      <div class="loading" ng-show="loading">
+        <i class="fa fa-cog fa-spin"></i> <span class="loadingtext">Submitting the tag,
+							please be patient</span>
+
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary" ng-click="ok()" ng-disabled="loading" id="link_addmarker_submit" value="Save"/>
+
+    <input type="button" class="btn btn-warning" ng-click="cancel()" ng-disabled="loading" id="link_addmarker_cancel" value="Cancel"/>
+
+  </form>
+
+</div>
+
+

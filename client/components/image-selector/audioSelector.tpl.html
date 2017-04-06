@@ -1,0 +1,21 @@
+
+<div class="image-selector">
+	<label class="filebutton"> <i class="fa fa-camera fa-lg"></i> <span>{{title}}</span>
+		<span> <input type="file" name="media_empty"
+			ng-file-select="onFileSelectSingle($files)" ng-disabled="ngDisabled"
+			class="file-input">
+	</span>
+	</label>
+</div>
+
+
+<div class="filePreviewItem" data-ng-repeat="file in allFiles">
+	<span class="deleteItem" data-ng-click="deleteItem(file)"><i
+		class="fa fa-times-circle fa-lg"></i> </span>
+	
+	<div class="uploaFilePreview">
+		{{file.name}}
+	</div>
+	<span  data-ng-click="deleteItem(file)"><i
+		class="fa fa-times-circle fa-lg"></i> </span>
+</div>

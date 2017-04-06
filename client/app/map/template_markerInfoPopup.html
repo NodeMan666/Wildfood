@@ -1,0 +1,47 @@
+
+<div class='infoWindow' ng-click='openMarker(marker)'>
+	<a class='left carousel-control' ng-click='marker.seeLess($event)'
+		ng-show='marker.showFullDescription && marker.description!=null && marker.description!=""'>
+		<span class='glyphicon glyphicon-chevron-left'></span>
+	</a>
+
+	<p class='thumbnail markerWindow' ng-show='!marker.showFullDescription'>
+		<img  ng-src="{{marker.getImageThumbUrl()}}">
+	</p>
+
+	<p class='description' ng-show='!marker.showFullDescription'
+		conditional-tooltip-cut-sentence="{{marker.description}}">{{marker.description|popupShortDescription}}
+	</p>
+
+	<p class='descriptionFull' ng-show='marker.showFullDescription'>
+		<span ng-bind-html='marker.description| enhanceLinks | cutLongestWords'></span>
+
+	</p>
+
+	<a class='right carousel-control' ng-click='marker.seeMore($event)'
+		ng-show='!marker.showFullDescription && marker.description!=null && marker.description!=""'>
+
+
+		<span class='glyphicon glyphicon-chevron-right'></span>
+	</a> <span class='bottomRow'> <span class='isFavoriteIcon'><i
+			class='fa fa-heart fa-lg fa-lg' ng-show='marker.isFavorite()'></i></span> <span
+		class='hasCommentsIcon' ng-click='openComments($event,marker)'><i
+			class='fa fa-comment-o fa-lg fa-lg'
+			ng-show='marker.comments.length>0'></i><span class='count'
+			tooltip-placement="right"
+			tooltip="This tag has {{marker.comments.length}} comments">{{marker.comments.length}}</span></span>
+		<span class='hasOthersIcon' ng-click='openComments($event,marker)'
+		ng-show='marker.isMatched() && marker.species.marker_count > 1'
+		tooltip-placement="right"
+		tooltip="There are {{marker.species.marker_count}} tags with the same plant ({{marker.species.local_tags}} locally)"><i
+			class='fa fa-map-marker fa-lg fa-lg'></i><span class='count'>{{marker.species.marker_count}}</span></span>
+	</span>
+
+
+	<div class='listing-footer'>
+
+		<span marker-plant-title="marker" /> <span
+			user-twitter-entry="marker" />
+
+	</div>
+</div>

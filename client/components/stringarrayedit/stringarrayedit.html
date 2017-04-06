@@ -1,0 +1,11 @@
+<button ng-click="addNewName()">add new</button>
+
+<div ng-repeat="tag in items">
+    <input ng-model="tag.text" ng-blur="updateModel()"/> <span
+        ng-click="deleteName(tag)"><i class="fa fa-times fa-lg"></i></span>  <span ng-click="moveUp(tag)">(MOVE UP)</span>
+</div>
+
+
+<!--<div ng-show="item.alternative_names.length==0">No-->
+    <!--alternative names-->
+<!--</div>-->

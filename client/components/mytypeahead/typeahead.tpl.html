@@ -1,0 +1,41 @@
+<!--<ul class="dropdown-menu ng-scope" ng-if="isOpen()" ng-style="{top: position.top+'px', left: position.left+'px'}" style="display: block; top: 34px; left: 15px;" role="listbox" aria-hidden="false" typeahead-popup="" id="typeahead-00B-9825" matches="matches" active="activeIdx" select="select(activeIdx)" query="query" position="position" template-url="mapTypeAheadTemplate.html">-->
+  <!--&lt;!&ndash; ngRepeat: match in matches track by $index &ndash;&gt;-->
+  <!--<li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="typeahead-00B-9825-option-0" class="ng-scope">-->
+  <!--<div class="typeAheadEntry ng-scope" ng-mouseover="match.model.showMore=true" ng-mouseleave="match.model.showMore=false">-->
+    <!--<i class="fa fa-pagelines fa-lg typeahedicon" style="color:#99CC34"></i>-->
+    <!--<span ng-show="!match.model.showMore" class="ng-binding">Dandelion ( Taraxacum officinale)  (56 tags)</span>-->
+
+		<!--<span ng-show="match.model.showMore" class="ng-binding ng-hide">-->
+			<!--Dandelion ( Taraxacum officinale)  (56 tags)-->
+		<!--</span>-->
+  <!--</div>-->
+
+
+  <!--&lt;!&ndash; end ngRepeat: match in matches track by $index &ndash;&gt;-->
+  <!--<li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="typeahead-00B-9825-option-10" class="ng-scope">-->
+  <!--<div class="typeAheadEntry ng-scope" ng-mouseover="match.model.showMore=true" ng-mouseleave="match.model.showMore=false">-->
+    <!--<i class="fa fa-users fa-lg typeahedicon" style="color:#333"></i>-->
+    <!--<span ng-show="!match.model.showMore" class="ng-binding">Find all people named 'dande'</span>-->
+
+		<!--<span ng-show="match.model.showMore" class="ng-binding ng-hide">-->
+			<!--Find all people named 'dande'-->
+		<!--</span>-->
+  <!--</div>-->
+<!--</li>&lt;!&ndash; end ngRepeat: match in matches track by $index &ndash;&gt;-->
+<!--</ul>-->
+
+
+
+<!--angular.module("template/typeahead/typeahead-match.html", []).run(["$templateCache", function($templateCache) {-->
+<!--$templateCache.put("template/typeahead/typeahead-match.html",-->
+<!--"<a tabindex=\"-1\" bind-html-unsafe=\"match.label | typeaheadHighlight:query\"></a>");-->
+<!--}]);-->
+
+<!--angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCache", function($templateCache) {-->
+<!--$templateCache.put("template/typeahead/typeahead-popup.html",-->
+<!--"<ul class=\"dropdown-menu\" ng-if=\"isOpen()\" ng-style=\"{top: position.top+'px', left: position.left+'px'}\" style=\"display: block;\" role=\"listbox\" aria-hidden=\"{{!isOpen()}}\">\n" +-->
+<!--"    <li ng-repeat=\"match in matches track by $index\" ng-class=\"{active: isActive($index) }\" ng-mouseenter=\"selectActive($index)\" ng-click=\"selectMatch($index)\" role=\"option\" id=\"{{match.id}}\">\n" +-->
+<!--"        <div typeahead-match index=\"$index\" match=\"match\" query=\"query\" template-url=\"templateUrl\"></div>\n" +-->
+<!--"    </li>\n" +-->
+<!--"</ul>");-->
+<!--}]);-->

@@ -1,0 +1,44 @@
+<div id="imageViewerPopup" class="modalPopup">
+  <div class="close-box" ng-click="ok()">x</div>
+
+  <div class="modal-header">
+    <h3></h3>
+  </div>
+  <div class="modal-body">
+
+
+    <div>
+      <pl-admin-carousel interval="-1" on-slide-change="onchange($index)">
+        <pl-admin-slide ng-repeat="item in slides" active="item.active">
+          <img ng-src="{{item.versions.standard.url}}"
+               style="margin: auto;"></pl-admin-slide>
+      </pl-admin-carousel>
+      <div ng-show="item.itemId!=null && item.itemId!=''">
+        <div class="actionBar gotolink">
+
+          <div class="actionItem" ng-show="item.showEntryLink"
+               ng-click="openEntry(item)">
+            <i class="fa fa-map-marker fa-lg"></i> <span class="text">Go
+							to this entry</span>
+          </div>
+
+        </div>
+				<span class="imagepopupUserEntry">
+
+<span ng-show="item.source !=null">
+        <span marker-long-location="item.source"/>
+           <span user-twitter-entry-full="item.source"/>
+  </span>
+           	<div ng-bind-html='item.description | enhanceLinks'
+                 class="itemDescription" style="clear: left"/>
+</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+  </div>
+</div>

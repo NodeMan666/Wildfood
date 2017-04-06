@@ -1,0 +1,26 @@
+
+<div ng-controller="CommentCtrl">
+	<div class="commentConent" ng-repeat="comment in item.comments | orderBy:'created':true">
+		<hr />
+
+		<div twitter-entry user="comment.owner"
+			item-date="comment.created" ng-click="userClicked($item)" />
+
+		<div ng-show="isCommentEditable(comment)" class="editComment"
+			ng-click="deleteComment(item,comment)">
+			<i class="fa fa-times fa-lg"></i> Delete
+		</div>
+
+		<div enhance-links text="comment.text" source="'instagram'"
+			class="entryText" id="content_comment_text"></div>
+
+		<div ng-show="comment.hasImage()">
+			<img ng-src="{{comment.getImageLowResUrl()}}"
+				class="commentImageThumb"
+				ng-click="showLargerCommentImage(comment,comment.getImage())">
+
+		</div>
+
+	</div>
+	<p ng-show="item.comments.length==0" id="content_no_comments">No comments yet</p>
+</div>

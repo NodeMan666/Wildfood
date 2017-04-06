@@ -1,0 +1,11 @@
+
+<div class='stream_item_header_small'>
+	<a ng-click="onLinkClick()" target='_new' class="link"
+		title="{{marker.owner.profile_link}}"> <img
+		src='{{marker.owner.profile_picture}}' class='avatar_small'
+		title="{{marker.owner.profile_link}}"></a> <a
+  ng-click="onLinkClick()" target='_new' class='user link'
+		title="{{marker.owner.profile_link}}"> <strong >{{marker.mainUserId}}</strong></a>
+	<div class='username' tooltip="{{marker.created | fulldate}}"
+		tooltip-placement="bottom">{{marker.created | dynamicDate}}</div>
+</div>

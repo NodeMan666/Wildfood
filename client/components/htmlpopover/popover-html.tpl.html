@@ -1,0 +1,12 @@
+<div class="popover {{placement}}" ng-class="{ in: isOpen(), fade: animation() }">
+    <div class="arrow"></div>
+
+    <div class="popover-inner">
+        <div class="popover-title">
+            <h4 class="popover-title-text" ng-bind="title" ng-show="title"></h4>
+            <i class="closeButton fa fa-times fa-lg" data-ng-click='hide()'></i>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="popover-content" ng-bind-html="trustedContent"></div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="myapp" style="width: 100%; height: 100%">
+  <div class="toptop"></div>
+
+  <div ng-include="'app/header/header.html'"/>
+
+  <div id="content" class="container-fluid "
+       style="width: 100%; height: 100%;">
+
+    <div ng-show="showMap" style="width: 100%; height: 100%;" class="maincontainer">
+      <div ng-include="'app/map/main_map.html'"
+           style="width: 100%; height: 100%;"></div>
+    </div>
+    <div ng-show="!showMap" style="width: 100%; height: 100%;">
+      <div ng-include src="content.location"
+           style="width: 100%; height: 100%;"></div>
+    </div>
+
+  </div>
+
+
+  <button class="btn footer-toggle">
+	<span class="open-content" ng-show="!showingFooter"
+        ng-click="showFooter()"> <i class="fa fa-info fa-lg"></i> Info
+	</span> <span class="close-content" ng-show="showingFooter"
+                ng-click="closeFooter()"><i class="fa fa-times fa-lg"></i> Close</span>
+  </button>
+
+
+  <div collapse="!showingFooter" id="popupFooter">
+    <div ng-include="'app/footer/footer.html'"/>
+
+
+  </div>
+</div>

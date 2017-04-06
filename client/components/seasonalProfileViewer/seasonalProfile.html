@@ -1,0 +1,21 @@
+<span ng-show="hasAnything()">
+    <div ng-repeat="zone in profile.items">
+        <span ng-show="hasZoneContent(zone)">
+     <span climate-zone-title="zone"/>
+      <div class="zones">
+            <span ng-repeat="part in zone.parts">
+                <span ng-show="hasPartContent(part)">
+                {{part.part.name}}
+                    <span seasonal-calendar="part.seasonalData"></span>
+                </span>
+              <br/>
+            </span>
+
+      </div>
+          </span>
+    </div>
+</span>
+<span ng-show="!hasAnything()">
+    No seasonal data
+</span>
+

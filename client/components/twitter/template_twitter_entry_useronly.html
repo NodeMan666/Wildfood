@@ -1,0 +1,14 @@
+
+<div class='stream_item_header'>
+	<a href='{{user.profile_link}}' target='_new'><img
+			ng-src='{{user.profile_picture}}' class='avatar'
+			title="{{user.profile_link}}"></a> <a href='{{user.profile_link}}'
+												  target='_new'> <strong title="{{user.profile_link}}">{{user.fullname}}</strong></a>
+	<span ng-show='user.showAt' class='username'>@</span><span
+		ng-show='user.showUser'> <a href='{{user.profile_link}}'
+										 ng-show='user.showUserNameAsLink' target='_new'
+										 title="{{user.profile_link}}" title="{{user.profile_link}}">{{user.username}}</a>
+		<span ng-show='!user.showUserNameAsLink' class='username'
+			  title="{{user.profile_link}}">{{user.username}}</span></span>
+
+</div>

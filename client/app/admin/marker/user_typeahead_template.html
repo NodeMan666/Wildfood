@@ -1,0 +1,14 @@
+<script type="text/ng-template" id="userTypeAheadTemplate.html">
+
+    <div class="typeAheadEntry">
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+
+        <p class="latin">
+            <span bind-html-unsafe="match.model.name"></span>: <span
+                bind-html-unsafe="match.model.wf_user_id"></span>:
+            (<span bind-html-unsafe="match.model.source"></span>)
+        </p>
+
+
+    </div>
+</script>

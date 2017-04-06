@@ -1,0 +1,13 @@
+<div class='stream_item_header'>
+  <a  ng-click="onLinkClick()" class="link" target='_new'><img ng-src='{{user.profile_picture}}' class='avatar'
+                                                title='{{user.profile_link}}'></a>
+  <a  ng-click="onLinkClick()" target='_new' class="link"> <strong title='{{user.profile_link}}'>{{user.fullname}}</strong></a>
+  <span ng-show='showAt' class='username'>@</span>
+  <span ng-show='showUser'><a  ng-click="onLinkClick()" class="link" ng-show='showUserNameAsLink' target='_new'
+                              title='{{user.profile_link}}'>{{user.username}}</a>
+  <span ng-show='!user.showUserNameAsLink' class='username' title='{{user.profile_link}}'>{{user.username}}</span></span>
+
+  <div class='username' title='{{itemDate | fulldate}}'>
+    {{itemDate | dynamicDate}}
+  </div>
+</div>

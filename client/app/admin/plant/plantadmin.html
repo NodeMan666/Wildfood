@@ -1,0 +1,80 @@
+<div ng-show="!isAdmin()">
+    You have to log in to view this page <a class="btn" ng-click="login()">
+    Login </a>
+</div>
+
+<div ng-show="isAdmin()" class="noforest">
+
+    <div class="infopanel">
+        <div ng-include src="'components/user/template_userProfile.html'"></div>
+    </div>
+
+    <div id="" style="width: 100%; height: 100%;">
+
+        <a id="list-your-space" class="yellow btn btn-special"
+           ng-click="addPlant()"><i class="fa fa-map-marker  fa-lg"></i>New
+            Plant</a>
+
+
+        <div id="content" class="container-fluid">
+            <div class="row row-offcanvas row-offcanvas-right col-sm-12 ">
+                <div class="col-sm-6 plantspanel">
+                    <div class="input-group navbar-form navbar-left"
+                         style="margin-left: 0px; width: 280px;">
+
+
+                        <input class="form-control" type="text" id="search-query"
+                               typeahead="plant  as plant.species.name for plant in getSpecies($viewValue)"
+                               typeahead-template-url="components/plants/plant_typeahead_template.html"
+                               typeahead-loading="loadingSpecies" ng-model="queryPlant"
+                               placeholder="Search" style="display: inline;"/><a
+                            ng-click="clearFilter()"><i class="fa fa-times  fa-lg"
+                                                        style="color: #99CC99"></i></a>
+
+                      <br/>
+                        <a class="btn"
+                           ng-click="showAll()"> Show all </a>
+                    </div>
+                    <div style="clear: left;">
+                        <div ng-repeat="item in filteredSpecies track by item.species._id"
+                             class=" plantDb col-md-2 plantDbItem"
+                             ng-class="{'plantWithItems': item.species.marker_count > 0}"
+                             ng-click="showItem(item)">
+                            <div ng-include="'components/plants/template_plantSquare.html'"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sidebar" class="col-sm-5 sidebar-offcanvas more_info_header"
+                     role="navigation">
+
+                    <accordion ng-show="showDetails" close-others="false">
+                        <accordion-group
+                                >
+                            <accordion-heading>
+                                <div class="actionItem" ng-click="edit(item)">
+                                    <span class="text">EDIT</span>
+                                </div>
+                                <div class="actionItem" ng-click="deleteItem(item)">
+                                    <span class="text">DELETE</span>
+                                </div>
+                              db.plants.find({_id: ObjectId("{{item.species._id}}")})
+                             (  permanencyType:{{item.species.permanencyType}})
+                            </accordion-heading>
+                        </accordion-group>
+
+
+                        <div ng-include src="'components/plants/plant_sidebar.html'"></div>
+                    </accordion>
+
+                    <accordion ng-show="!showDetails">
+                        <div ng-include src="'components/plants/plant_instruction_sidebar.html'"></div>
+                    </accordion>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
